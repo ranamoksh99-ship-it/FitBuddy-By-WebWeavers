@@ -1,0 +1,25 @@
+{
+  "name": "FitBuddy by WebWeavers - Live Daily Fitness Tracker & Day-Wise Workout Planner",
+  "short_name": "FitBuddy",
+  "description": "Comprehensive live daily fitness tracking, Day-Wise Workout Planner with Gym & Home routines, real-time GPS tracking, and coach admin dashboard.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6000",
+  "orientation": "any",
+  "categories": ["fitness", "health", "sports", "lifestyle"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' fill='%23ff6000'><rect width='192' height='192' rx='40' fill='%23ff6000'/><path d='M96 150l-10.8-9.8C47 105 20 80.5 20 50.5 20 26 39.5 6.5 64 6.5c13.8 0 27.2 6.5 32 16.7 4.8-10.2 18.2-16.7 32-16.7 24.5 0 44 19.5 44 44 0 30-27 54.5-65.2 89.8L96 150z' fill='%23ffffff'/><path d='M45 96h30l15-35 20 70 15-35h35' stroke='%23ff6000' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%23ff6000'><rect width='512' height='512' rx='100' fill='%23ff6000'/><path d='M256 400l-28.8-26.1C125 280 53 214.7 53 134.7 53 69.3 105.3 17.3 170.7 17.3c36.8 0 72.5 17.3 85.3 44.5 12.8-27.2 48.5-44.5 85.3-44.5C406.7 17.3 459 69.3 459 134.7c0 80-72 145.3-174.2 239.5L256 400z' fill='%23ffffff'/><path d='M120 256h80l40-90 50 180 40-90h90' stroke='%23ff6000' stroke-width='20' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

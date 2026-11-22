@@ -1,0 +1,5 @@
+# FitBuddy by WebWeavers Fitness Challenge Tracker - Robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://fitbuddy-webweavers.app/sitemap.xml

@@ -1,0 +1,825 @@
+{
+  "title": "FitBuddy by WebWeavers Day-Wise Athletic Nutrition & Diet Plan",
+  "version": "2.0",
+  "extractedFrom": "National Institutes of Health (NIH) & International Society of Sports Nutrition (ISSN) Athletic Dietary Guidelines",
+  "targetCaloriesAverage": 2200,
+  "macroDistribution": {
+    "protein": "25-30%",
+    "carbohydrates": "45-50%",
+    "healthyFats": "25-30%"
+  },
+  "days": {
+    "Monday": {
+      "focus": "High Protein Kickoff & Muscle Priming",
+      "targets": { "calories": 2150, "protein": "140g", "carbs": "220g", "fats": "65g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Sprouted Moong & Paneer Salad with Greek Yogurt & Chia",
+            "desc": "Sprouted mung beans, 100g fresh paneer cubes, chopped cucumbers, tomatoes, 1 tbsp chia seeds, and 100g low-fat Greek yogurt.",
+            "calories": 420,
+            "protein": 28,
+            "carbs": 45,
+            "fats": 14,
+            "nutrients": "High fiber, calcium, plant phytonutrients"
+          },
+          "nonVeg": {
+            "name": "3-Egg Scramble with Multigrain Sourdough & Avocado",
+            "desc": "2 whole eggs + 2 egg whites scrambled with spinach, served with 2 slices of multigrain toast and 40g sliced avocado.",
+            "calories": 460,
+            "protein": 32,
+            "carbs": 35,
+            "fats": 20,
+            "nutrients": "High choline, bioavailable albumin, monounsaturated fats"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Raw Almonds, Walnuts & Crisp Green Apple",
+            "desc": "15 almonds, 4 walnut halves, and 1 crisp green apple.",
+            "calories": 210,
+            "protein": 6,
+            "carbs": 22,
+            "fats": 14,
+            "nutrients": "Vitamin E, polyphenols, omega-3 ALA"
+          },
+          "nonVeg": {
+            "name": "Whey Isolate / Boiled Egg Whites with Fresh Berries",
+            "desc": "1 scoop whey protein in water or 3 boiled egg whites paired with 1 cup fresh blueberries or strawberries.",
+            "calories": 220,
+            "protein": 24,
+            "carbs": 18,
+            "fats": 3,
+            "nutrients": "Fast-absorbing BCAA leucine, antioxidants"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Grilled Tofu & Quinoa Power Bowl with Chickpeas",
+            "desc": "150g firm tofu cubes grilled with olive oil, 1 cup cooked quinoa, 1/2 cup boiled chickpeas, steamed spinach, and lemon tahini dressing.",
+            "calories": 580,
+            "protein": 34,
+            "carbs": 68,
+            "fats": 20,
+            "nutrients": "Complete essential amino acids, iron, magnesium"
+          },
+          "nonVeg": {
+            "name": "Grilled Herb Chicken Breast with Brown Rice & Broccoli",
+            "desc": "180g skinless chicken breast marinated in garlic, rosemary and olive oil, 1 cup brown basmati rice, and steamed broccoli florets.",
+            "calories": 590,
+            "protein": 48,
+            "carbs": 58,
+            "fats": 15,
+            "nutrients": "Lean complete protein, niacin, complex glycogen replenishment"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Banana with All-Natural Peanut Butter & Rolled Oats Bite",
+            "desc": "1 medium ripe banana with 1 tbsp unsweetened peanut butter and a sprinkle of cinnamon rolled oats.",
+            "calories": 240,
+            "protein": 8,
+            "carbs": 36,
+            "fats": 9,
+            "nutrients": "Potassium, pre-workout fast energy, magnesium"
+          },
+          "nonVeg": {
+            "name": "Steamed Sweet Potato with 2 Boiled Eggs",
+            "desc": "150g steamed sweet potato with pink Himalayan salt paired with 2 hard-boiled eggs.",
+            "calories": 260,
+            "protein": 14,
+            "carbs": 32,
+            "fats": 8,
+            "nutrients": "Beta carotene, sustained glucose release"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Yellow Lentil Dal Tadka with Steamed Millets & French Beans",
+            "desc": "1.5 cups yellow moong dal cooked with cumin, ginger and ghee, 1 cup steamed foxtail millets, and stir-fried green beans with coconut.",
+            "calories": 480,
+            "protein": 22,
+            "carbs": 72,
+            "fats": 12,
+            "nutrients": "Easy digestive transit, gut-friendly resistant starch"
+          },
+          "nonVeg": {
+            "name": "Pan-Seared Salmon Fillet with Quinoa & Asparagus",
+            "desc": "150g wild salmon fillet seared in virgin olive oil, 3/4 cup cooked quinoa, and 6 spears of grilled asparagus with lemon juice.",
+            "calories": 520,
+            "protein": 42,
+            "carbs": 38,
+            "fats": 18,
+            "nutrients": "Omega-3 EPA & DHA, joint anti-inflammatory, vitamin D"
+          }
+        }
+      ]
+    },
+    "Tuesday": {
+      "focus": "Complex Carb Loading & Cellular Endurance",
+      "targets": { "calories": 2180, "protein": "142g", "carbs": "230g", "fats": "62g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Warm Cinnamon Oatmeal Bowl with Soy Milk & Seeds",
+            "desc": "1 cup rolled oats cooked in organic soy milk, topped with 1 tbsp flaxseeds, fresh blueberries and crushed pistachios.",
+            "calories": 410,
+            "protein": 18,
+            "carbs": 62,
+            "fats": 12,
+            "nutrients": "Beta-glucan soluble fiber, sustained heart stamina"
+          },
+          "nonVeg": {
+            "name": "Turkey Bacon & Spinach Omelet with Sliced Papaya",
+            "desc": "3-egg omelet loaded with fresh baby spinach and lean turkey slices, served with 1 cup fresh diced papaya.",
+            "calories": 440,
+            "protein": 36,
+            "carbs": 20,
+            "fats": 22,
+            "nutrients": "Papain digestive enzyme, high amino density"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Roasted Masala Black Chickpeas with Lime & Cucumber",
+            "desc": "1 cup dry-roasted black chickpeas (Kala Chana) seasoned with rock salt, cumin, fresh lime and cucumber cubes.",
+            "calories": 180,
+            "protein": 10,
+            "carbs": 26,
+            "fats": 4,
+            "nutrients": "Low GI carb release, iron, copper"
+          },
+          "nonVeg": {
+            "name": "Cottage Cheese & Egg Whites with Pomegranate Seeds",
+            "desc": "100g low-fat cottage cheese and 2 boiled egg whites sprinkled with ruby pomegranate arils.",
+            "calories": 190,
+            "protein": 16,
+            "carbs": 16,
+            "fats": 5,
+            "nutrients": "Slow-release casein, nitric oxide booster"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Rajma (Red Kidney Bean) Curry with Brown Basmati Rice",
+            "desc": "1.5 cups hearty kidney bean curry in tomato-ginger gravy, 1 cup brown basmati rice, grated beetroot salad, and mint chutney.",
+            "calories": 560,
+            "protein": 26,
+            "carbs": 84,
+            "fats": 12,
+            "nutrients": "Folate, molybdenum, sustained liver glycogen"
+          },
+          "nonVeg": {
+            "name": "Chicken Tikka Breast with Whole Wheat Roti & Raita",
+            "desc": "160g roasted chicken breast tikka chunks with 2 whole wheat flatbreads, cucumber Greek yogurt raita, and green salad.",
+            "calories": 580,
+            "protein": 46,
+            "carbs": 54,
+            "fats": 16,
+            "nutrients": "Thermogenic spices, lean poultry protein"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Mixed Berry Chia Smoothie with Almond Milk",
+            "desc": "Blended strawberries, raspberries, 1 scoop plant protein or chia seeds with unsweetened almond milk.",
+            "calories": 210,
+            "protein": 7,
+            "carbs": 34,
+            "fats": 6,
+            "nutrients": "Anthocyanins, hydration electrolytes"
+          },
+          "nonVeg": {
+            "name": "Tuna Salad Wrap on Crisp Lettuce Cups",
+            "desc": "1 can light chunk tuna drained, mixed with Dijon mustard, Greek yogurt, diced celery and wrapped in romaine leaves.",
+            "calories": 230,
+            "protein": 28,
+            "carbs": 10,
+            "fats": 7,
+            "nutrients": "Low carbohydrate, pure protein nitrogen retention"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Palak Paneer (Spinach & Cottage Cheese) with Multi-Millet Roti",
+            "desc": "Fresh pureed spinach gravy with 120g light paneer, 2 multi-millet rotis, and a crunchy radish-cucumber salad.",
+            "calories": 490,
+            "protein": 26,
+            "carbs": 48,
+            "fats": 20,
+            "nutrients": "Iron, lutein for eye health, calcium"
+          },
+          "nonVeg": {
+            "name": "Grilled Lemon Rosemary Chicken with Roasted Sweet Potatoes",
+            "desc": "170g grilled chicken breast fillet, 1 medium baked sweet potato, and steamed French beans.",
+            "calories": 510,
+            "protein": 45,
+            "carbs": 44,
+            "fats": 14,
+            "nutrients": "Vitamin A, complex recovery carbs, zinc"
+          }
+        }
+      ]
+    },
+    "Wednesday": {
+      "focus": "Clean Metabolic Burn & Anti-Inflammatory Balance",
+      "targets": { "calories": 2100, "protein": "145g", "carbs": "210g", "fats": "60g", "water": "3.2L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Besan (Gram Flour) Chilla with Grated Paneer & Mint Chutney",
+            "desc": "2 savory spiced chickpea flour pancakes stuffed with 60g grated paneer, fresh coriander, and mint-coriander dip.",
+            "calories": 390,
+            "protein": 22,
+            "carbs": 42,
+            "fats": 14,
+            "nutrients": "Complex resistant starch, zinc, sulfur aminos"
+          },
+          "nonVeg": {
+            "name": "Poached Eggs & Smoked Salmon on Whole Wheat Toast",
+            "desc": "2 poached farm eggs, 50g smoked salmon slices on toasted whole grain bread with cracked black pepper.",
+            "calories": 440,
+            "protein": 35,
+            "carbs": 30,
+            "fats": 18,
+            "nutrients": "Omega-3, selenium, high leucine profile"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Tender Coconut Water & Raw Sunflower-Pumpkin Seeds",
+            "desc": "1 glass fresh tender coconut water paired with 25g raw pumpkin and sunflower seed kernels.",
+            "calories": 190,
+            "protein": 7,
+            "carbs": 14,
+            "fats": 12,
+            "nutrients": "Potassium, zinc, natural intracellular hydration"
+          },
+          "nonVeg": {
+            "name": "Greek Yogurt Bowl with Crushed Walnuts & Kiwi",
+            "desc": "150g Greek yogurt topped with 1 sliced kiwi and 3 crushed walnut halves.",
+            "calories": 210,
+            "protein": 18,
+            "carbs": 16,
+            "fats": 8,
+            "nutrients": "Probiotics, vitamin C, brain-boosting omega-3"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "High-Protein Soya Chunks & Pea Pulao with Spiced Raita",
+            "desc": "60g textured soya chunks cooked with green peas and brown rice, served with 1 cup roasted cumin curd raita.",
+            "calories": 540,
+            "protein": 38,
+            "carbs": 65,
+            "fats": 12,
+            "nutrients": "Isoflavones, highest plant protein concentration"
+          },
+          "nonVeg": {
+            "name": "Baked Herb Cod / Tilapia Fillet with Garlic Quinoa",
+            "desc": "200g white fish fillet baked in parchment with lemon, thyme and garlic, served with 1 cup cooked quinoa and asparagus.",
+            "calories": 520,
+            "protein": 44,
+            "carbs": 48,
+            "fats": 12,
+            "nutrients": "Ultra-lean marine protein, low saturated fat"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Olive Oil Roasted Makhana (Fox Nuts) with Rock Salt",
+            "desc": "2 cups crunchy roasted lotus seeds tossed in 1 tsp cold-pressed olive oil, turmeric and Himalayan salt.",
+            "calories": 160,
+            "protein": 5,
+            "carbs": 24,
+            "fats": 6,
+            "nutrients": "Anti-aging kaempferol, low sodium, light on digestion"
+          },
+          "nonVeg": {
+            "name": "3 Boiled Egg Whites with Orange Slices",
+            "desc": "3 boiled egg whites sprinkled with black pepper and 1 fresh sweet naval orange.",
+            "calories": 170,
+            "protein": 18,
+            "carbs": 14,
+            "fats": 3,
+            "nutrients": "Quick recovery amino acids, vitamin C collagen support"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Tofu & Edamame Sesame Stir-Fry with Cauliflower Rice",
+            "desc": "150g cubed tofu, 1/2 cup shelled edamame, bell peppers, broccoli tossed in toasted sesame oil over cauliflower rice.",
+            "calories": 440,
+            "protein": 30,
+            "carbs": 36,
+            "fats": 18,
+            "nutrients": "Sulforaphane, low glycemic, hormone balance"
+          },
+          "nonVeg": {
+            "name": "Turkey & Spinach Meatballs in Marinara over Zucchini Noodles",
+            "desc": "180g lean minced turkey meatballs simmered in fresh tomato-basil marinara over spiralized zucchini noodles.",
+            "calories": 480,
+            "protein": 44,
+            "carbs": 22,
+            "fats": 18,
+            "nutrients": "Lycopene, lean iron, low carb nighttime satiety"
+          }
+        }
+      ]
+    },
+    "Thursday": {
+      "focus": "Power Output & Glycogen Synthesis",
+      "targets": { "calories": 2200, "protein": "148g", "carbs": "235g", "fats": "64g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Peanut Butter & Banana Overnight Oats with Soy Protein",
+            "desc": "Overnight soaked rolled oats with unsweetened soy milk, 1 scoop plant protein, 1 tbsp peanut butter and sliced banana.",
+            "calories": 460,
+            "protein": 24,
+            "carbs": 62,
+            "fats": 15,
+            "nutrients": "Potassium, zinc, sustained muscular endurance"
+          },
+          "nonVeg": {
+            "name": "4-Egg Folded Omelet with Turkey Strips & Bell Peppers",
+            "desc": "2 whole eggs + 2 egg whites whisked with peppers and diced lean turkey ham, cooked in olive oil spray.",
+            "calories": 450,
+            "protein": 38,
+            "carbs": 14,
+            "fats": 24,
+            "nutrients": "Choline, high satiety, cellular phospholipid repair"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Orange Slices with Brazil Nuts & Almonds",
+            "desc": "1 fresh orange paired with 2 selenium-rich Brazil nuts and 10 almonds.",
+            "calories": 200,
+            "protein": 5,
+            "carbs": 20,
+            "fats": 13,
+            "nutrients": "Selenium for thyroid optimization, vitamin C"
+          },
+          "nonVeg": {
+            "name": "Whey Isolate Protein Shake with Strawberries",
+            "desc": "1 scoop whey isolate mixed with chilled water or skim milk, blended with 100g fresh strawberries.",
+            "calories": 220,
+            "protein": 28,
+            "carbs": 18,
+            "fats": 2,
+            "nutrients": "Rapid muscle protein synthesis trigger (mTOR)"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Black Bean & Sweet Corn Burrito Bowl with Guacamole",
+            "desc": "1.5 cups seasoned black beans, 1/2 cup sweet corn, 1 cup brown rice, 2 tbsp fresh guacamole and homemade salsa.",
+            "calories": 570,
+            "protein": 24,
+            "carbs": 82,
+            "fats": 18,
+            "nutrients": "Anthocyanins, heart-healthy monounsaturated fats"
+          },
+          "nonVeg": {
+            "name": "Grilled Chicken Breast Fajita Bowl with Brown Rice & Beans",
+            "desc": "180g grilled chicken fajita strips with sautéed bell peppers, 1/2 cup black beans, and 1 cup brown rice.",
+            "calories": 580,
+            "protein": 50,
+            "carbs": 56,
+            "fats": 14,
+            "nutrients": "Maximal protein delivery, glycogen refill"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Sprouted Chickpea Salad with Diced Tomato & Lemon",
+            "desc": "1 cup sprouted chickpeas tossed with finely chopped tomatoes, green chilies, cilantro and fresh lemon juice.",
+            "calories": 200,
+            "protein": 11,
+            "carbs": 30,
+            "fats": 4,
+            "nutrients": "Digestive enzymes, low-fat plant energizer"
+          },
+          "nonVeg": {
+            "name": "Sliced Roast Turkey Breast on Whole Grain Crackers",
+            "desc": "70g lean sliced turkey breast on 4 multigrain crispbreads with sliced cucumbers.",
+            "calories": 210,
+            "protein": 22,
+            "carbs": 18,
+            "fats": 5,
+            "nutrients": "Tryptophan, low sodium recovery crunch"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Methi Dal (Fenugreek Lentil Stew) with Jowar Roti & Bhindi",
+            "desc": "1.5 cups yellow dal with fresh fenugreek leaves, 2 sorghum (jowar) rotis, and dry-roasted spiced okra (bhindi).",
+            "calories": 470,
+            "protein": 21,
+            "carbs": 70,
+            "fats": 11,
+            "nutrients": "Blood sugar regulation, gluten-free whole grain"
+          },
+          "nonVeg": {
+            "name": "Pan-Grilled Salmon with Herb Roasted Potatoes & Spinach",
+            "desc": "160g Atlantic salmon, 1 cup baby roasted potatoes with rosemary, and 2 cups wilted garlic baby spinach.",
+            "calories": 530,
+            "protein": 42,
+            "carbs": 40,
+            "fats": 20,
+            "nutrients": "Potassium, omega-3, iron, anti-cramping minerals"
+          }
+        }
+      ]
+    },
+    "Friday": {
+      "focus": "Recovery Acceleration & Joint Protection",
+      "targets": { "calories": 2150, "protein": "146g", "carbs": "215g", "fats": "65g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Smashed Avocado & Cottage Cheese on Toasted Rye Bread",
+            "desc": "2 slices toasted artisanal rye topped with 50g smashed avocado, 80g paneer/cottage cheese and hemp seeds.",
+            "calories": 430,
+            "protein": 22,
+            "carbs": 38,
+            "fats": 22,
+            "nutrients": "Hemp seed complete aminos, healthy omega-6/omega-3 ratio"
+          },
+          "nonVeg": {
+            "name": "Scrambled Eggs with Smoked Chicken & Sliced Avocado",
+            "desc": "3 free-range eggs scrambled with 60g shredded smoked chicken and 40g sliced avocado.",
+            "calories": 470,
+            "protein": 40,
+            "carbs": 12,
+            "fats": 26,
+            "nutrients": "Lutein, high protein density, vitamin K2"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Green Power Smoothie with Chia Seeds & Coconut Water",
+            "desc": "Baby spinach, cucumber, celery, 1 green apple, and 1 tbsp chia blended in tender coconut water.",
+            "calories": 170,
+            "protein": 5,
+            "carbs": 28,
+            "fats": 5,
+            "nutrients": "Chlorophyll, deep cellular detoxification, potassium"
+          },
+          "nonVeg": {
+            "name": "2 Hard Boiled Eggs with Sliced Cucumbers & Paprika",
+            "desc": "2 whole boiled eggs halved and dusted with smoked Spanish paprika and cucumber slices.",
+            "calories": 170,
+            "protein": 14,
+            "carbs": 4,
+            "fats": 11,
+            "nutrients": "B-complex vitamins, antioxidant capsaicin"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "High-Protein Paneer Bhurji with 2 Multi-Grain Phulkas",
+            "desc": "150g crumbled paneer sautéed with onions, tomatoes, turmeric and green peas, with 2 phulkas and fresh curd.",
+            "calories": 560,
+            "protein": 32,
+            "carbs": 52,
+            "fats": 24,
+            "nutrients": "Curcumin anti-inflammatory, calcium, whey fractions"
+          },
+          "nonVeg": {
+            "name": "Grilled Lemon Pepper Chicken Thigh with Wild Rice",
+            "desc": "180g skinless chicken thigh grilled with black pepper and lemon zest, 1 cup wild/brown rice and roasted baby carrots.",
+            "calories": 570,
+            "protein": 45,
+            "carbs": 50,
+            "fats": 18,
+            "nutrients": "Heme iron, zinc, complex glycogen"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Roasted Edamame Beans seasoned with Sea Salt",
+            "desc": "1 cup warm steamed or dry-roasted edamame in pods dusted with flaky sea salt.",
+            "calories": 190,
+            "protein": 17,
+            "carbs": 14,
+            "fats": 7,
+            "nutrients": "Natural plant isoflavones, fiber, magnesium"
+          },
+          "nonVeg": {
+            "name": "Tuna Salad on Whole Grain Toast",
+            "desc": "100g canned tuna drained, dressed with cold-pressed olive oil, lemon and celery on 1 slice toasted bread.",
+            "calories": 220,
+            "protein": 26,
+            "carbs": 16,
+            "fats": 6,
+            "nutrients": "High EPA/DHA fatty acids, rapid amino delivery"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Tofu Green Curry with Jasmine Brown Rice",
+            "desc": "150g cubed tofu simmered in light coconut milk, green curry paste, bell peppers and bamboo shoots with 1 cup brown rice.",
+            "calories": 490,
+            "protein": 26,
+            "carbs": 58,
+            "fats": 17,
+            "nutrients": "Medium chain triglycerides (MCT), easily metabolized"
+          },
+          "nonVeg": {
+            "name": "Baked White Fish with Herbed Couscous & Mediterranean Veggies",
+            "desc": "180g baked white fish fillet with 3/4 cup herbed couscous, roasted zucchini, eggplant and cherry tomatoes.",
+            "calories": 500,
+            "protein": 42,
+            "carbs": 46,
+            "fats": 13,
+            "nutrients": "Lean protein, quercetin from onions, light nighttime digestion"
+          }
+        }
+      ]
+    },
+    "Saturday": {
+      "focus": "High Output Weekend Energy & Strength Recharge",
+      "targets": { "calories": 2250, "protein": "150g", "carbs": "240g", "fats": "68g", "water": "3.5L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Protein Oatmeal Pancakes with Greek Yogurt & Pure Maple",
+            "desc": "3 fluffy homemade pancakes made of blended oats, banana, plant protein, topped with 2 tbsp Greek yogurt and pure maple syrup.",
+            "calories": 440,
+            "protein": 26,
+            "carbs": 58,
+            "fats": 10,
+            "nutrients": "Slow digestive carbs, glycogen loading, calcium"
+          },
+          "nonVeg": {
+            "name": "3-Egg Omelet Stuffed with Diced Chicken Breast & Spinach",
+            "desc": "3 whole eggs filled with 70g pre-cooked diced chicken breast, mushrooms, and baby spinach.",
+            "calories": 460,
+            "protein": 44,
+            "carbs": 10,
+            "fats": 24,
+            "nutrients": "Dense leucine load, choline, iron"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Watermelon Cubes & Roasted Pumpkin-Flax Mix",
+            "desc": "2 cups sweet fresh watermelon cubes with 20g roasted pumpkin and flaxseed mix.",
+            "calories": 180,
+            "protein": 6,
+            "carbs": 22,
+            "fats": 9,
+            "nutrients": "L-citrulline for vascular dilation and pump"
+          },
+          "nonVeg": {
+            "name": "Whey Protein Shake with Blueberries & Almond Milk",
+            "desc": "1 scoop whey protein blended with 1/2 cup wild blueberries and unsweetened almond milk.",
+            "calories": 200,
+            "protein": 26,
+            "carbs": 15,
+            "fats": 3,
+            "nutrients": "Brain-derived neurotrophic factor support, antioxidants"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Mediterranean Falafel & Hummus Whole Grain Pita Pocket",
+            "desc": "4 baked chickpea falafels, 3 tbsp garlic hummus, chopped tabbouleh and tahini stuffed in a warm whole grain pita.",
+            "calories": 550,
+            "protein": 22,
+            "carbs": 74,
+            "fats": 19,
+            "nutrients": "Heart-healthy olive oil, prebiotic chickpea fiber"
+          },
+          "nonVeg": {
+            "name": "Grilled Chicken Shawarma Salad Bowl with Hummus & Greens",
+            "desc": "180g spiced grilled chicken shawarma over chopped romaine, tomatoes, cucumbers, 3 tbsp hummus and olive oil.",
+            "calories": 560,
+            "protein": 48,
+            "carbs": 34,
+            "fats": 22,
+            "nutrients": "Monounsaturated fats, high protein, low glycemic load"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Apple Wedges with 1 tbsp Natural Almond Butter",
+            "desc": "1 crisp Red Delicious apple sliced and dipped into natural creamy almond butter.",
+            "calories": 200,
+            "protein": 5,
+            "carbs": 26,
+            "fats": 10,
+            "nutrients": "Pectin fiber, healthy fats, steady glucose"
+          },
+          "nonVeg": {
+            "name": "Egg White Muffin Cups with Turkey Bacon & Chives",
+            "desc": "3 baked egg white cups with diced turkey bacon, baby spinach and chives.",
+            "calories": 180,
+            "protein": 22,
+            "carbs": 6,
+            "fats": 7,
+            "nutrients": "Ultra-clean lean protein snack"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Grilled Paneer Steak with Sautéed Mushrooms & Quinoa",
+            "desc": "140g grilled paneer steak seasoned with smoked paprika, served with sautéed garlic mushrooms and 1 cup cooked quinoa.",
+            "calories": 510,
+            "protein": 30,
+            "carbs": 42,
+            "fats": 24,
+            "nutrients": "Selenium from mushrooms, bone-building calcium"
+          },
+          "nonVeg": {
+            "name": "Grilled Lean Beef Sirloin / Chicken Breast with Sweet Potato",
+            "desc": "170g lean sirloin or thick chicken breast grilled medium, 1 baked sweet potato and steamed garlic kale.",
+            "calories": 540,
+            "protein": 48,
+            "carbs": 38,
+            "fats": 16,
+            "nutrients": "Creatine, carnitine, bioavailable iron, vitamin K"
+          }
+        }
+      ]
+    },
+    "Sunday": {
+      "focus": "Digestive Reset, Alkalinity & Active Restoration",
+      "targets": { "calories": 2050, "protein": "135g", "carbs": "210g", "fats": "58g", "water": "3.5L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Chia Coconut Pudding with Fresh Mango & Berries",
+            "desc": "Overnight chia seeds in light coconut milk, topped with diced sweet mango, raspberries and sliced almonds.",
+            "calories": 390,
+            "protein": 14,
+            "carbs": 46,
+            "fats": 18,
+            "nutrients": "Omega-3, soluble mucilage for digestive health"
+          },
+          "nonVeg": {
+            "name": "Sunny-Side-Up Eggs on Multigrain with Smoked Salmon",
+            "desc": "2 sunny-side-up free-range eggs on whole wheat toast with 40g smoked salmon and peppery baby arugula.",
+            "calories": 430,
+            "protein": 32,
+            "carbs": 28,
+            "fats": 18,
+            "nutrients": "Lutein, healthy marine fats, high protein"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Probiotic Spiced Buttermilk (Chaas) with Walnuts",
+            "desc": "1 tall glass cold churned probiotic curd with roasted cumin, mint, and 4 raw walnut halves.",
+            "calories": 160,
+            "protein": 6,
+            "carbs": 10,
+            "fats": 12,
+            "nutrients": "Lactobacillus live cultures, gut microbiome reset"
+          },
+          "nonVeg": {
+            "name": "Low-Fat Cottage Cheese / Egg Whites with Strawberries",
+            "desc": "100g cottage cheese or 3 boiled egg whites paired with fresh sweet strawberry halves.",
+            "calories": 170,
+            "protein": 18,
+            "carbs": 14,
+            "fats": 4,
+            "nutrients": "Glutamine, slow digesting amino recovery"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Soothing Moong Dal & Brown Rice Khichdi with Pure Ghee",
+            "desc": "Classic restorative Ayurvedic khichdi cooked with split yellow mung dal, brown rice, turmeric, cumin, 1 tsp A2 ghee, and roasted papad.",
+            "calories": 520,
+            "protein": 20,
+            "carbs": 82,
+            "fats": 14,
+            "nutrients": "Alkalizing, complete amino profile, easy assimilation"
+          },
+          "nonVeg": {
+            "name": "Slow-Cooked Chicken Bone Broth Stew with Wild Rice",
+            "desc": "Rich collagen chicken bone broth simmered with 150g shredded chicken, carrots, celery, herbs and 1 cup wild rice.",
+            "calories": 510,
+            "protein": 42,
+            "carbs": 48,
+            "fats": 12,
+            "nutrients": "Type II collagen, glycine, joint cartilage repair"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Mixed Sprout Chaat with Lime & Chaat Masala",
+            "desc": "1 cup mixed sprouted lentils with diced onions, tomatoes, green chili, rock salt and fresh lime juice.",
+            "calories": 180,
+            "protein": 10,
+            "carbs": 28,
+            "fats": 3,
+            "nutrients": "Live digestive enzymes, vitamin C, light snack"
+          },
+          "nonVeg": {
+            "name": "2 Hard Boiled Eggs with Sweet Paprika",
+            "desc": "2 whole boiled eggs halved and seasoned with smoked paprika and sea salt.",
+            "calories": 150,
+            "protein": 13,
+            "carbs": 2,
+            "fats": 10,
+            "nutrients": "Zero carb protein satiety"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Light Vegetable Soup with Grilled Tofu Skewers",
+            "desc": "Clear antioxidant vegetable broth with 120g grilled tofu skewers and a crisp lettuce-cucumber garden salad.",
+            "calories": 420,
+            "protein": 24,
+            "carbs": 38,
+            "fats": 16,
+            "nutrients": "Hydrating, light on gut, ensures restful sleep"
+          },
+          "nonVeg": {
+            "name": "Poached Lemon Dill Salmon with Cauliflower Mash & Greens",
+            "desc": "150g delicate salmon poached with lemon and fresh dill, served with creamy roasted garlic cauliflower mash.",
+            "calories": 460,
+            "protein": 38,
+            "carbs": 18,
+            "fats": 22,
+            "nutrients": "Brain health, low glycemic night recovery"
+          }
+        }
+      ]
+    }
+  }
+}

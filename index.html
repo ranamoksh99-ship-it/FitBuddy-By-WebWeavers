@@ -1,0 +1,2558 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff6000">
+  <meta name="description" content="FitBuddy by WebWeavers is a modern, real-time live daily fitness tracker, Day-Wise Workout Planner with Gym &amp; Home routines, live GPS tracking, and coach admin dashboard.">
+  <meta name="keywords" content="FitBuddy, WebWeavers, fitness tracker, daily fitness tracker, workout planner, day-wise workout planner, gym workouts, home workouts, live GPS tracker, exercise planner, fitness challenge tracker, calories burned calculator, hydration tracker, CSE326">
+  <meta name="author" content="WebWeavers Engineering Team">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://fitbuddy-webweavers.app/">
+
+  <!-- Progressive Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192' fill='%23ff6000'><rect width='192' height='192' rx='40' fill='%23ff6000'/><path d='M96 150l-10.8-9.8C47 105 20 80.5 20 50.5 20 26 39.5 6.5 64 6.5c13.8 0 27.2 6.5 32 16.7 4.8-10.2 18.2-16.7 32-16.7 24.5 0 44 19.5 44 44 0 30-27 54.5-65.2 89.8L96 150z' fill='%23ffffff'/><path d='M45 96h30l15-35 20 70 15-35h35' stroke='%23ff6000' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
+
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:title" content="FitBuddy by WebWeavers - Live Daily Fitness Tracker &amp; Day-Wise Workout Planner">
+  <meta property="og:description" content="Live workout tracking with GPS routes, MET calorie burn, Day-Wise Gym &amp; Home workout routines with 1-click exercise alternatives, and Coach Admin Portal.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fitbuddy-webweavers.app/">
+  <meta property="og:site_name" content="FitBuddy by WebWeavers">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FitBuddy by WebWeavers - Live Daily Fitness &amp; Workout Planner">
+  <meta name="twitter:description" content="Daily fitness tracker, day-wise split planner, live GPS metrics, and coach admin dashboard.">
+
+  <!-- Structured Data JSON-LD (Schema.org WebApplication & ExercisePlan) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FitBuddy by WebWeavers Fitness Tracker",
+    "url": "https://fitbuddy-webweavers.app/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "All modern browsers (Chrome, Edge, Firefox, Safari, Brave)",
+    "description": "Live daily fitness challenge tracker with user authentication, Day-Wise Workout Planner (Gym and Home splits), GPS telemetry, and Coach/Staff Admin Portal by WebWeavers.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "User Authentication & 0-Reset Onboarding",
+      "Day-Wise Workout Planner (Gym & Home Workouts)",
+      "1 to 2 Exercise Alternatives with 1-Click Swap",
+      "Live GPS Stopwatch & Calorie Tracking",
+      "Activity History with Search & Filter",
+      "Coach & Staff Admin Control Center",
+      "Member Roster & Community Broadcasts",
+      "Day-Wise Athletic Diet Plan (Veg & Non-Veg Options)",
+      "Hydration & Daily Step Tracking",
+      "CSV & JSON Data Export"
+    ]
+  }
+  </script>
+
+  <title>FitBuddy by WebWeavers - Live Daily Fitness &amp; Day-Wise Workout Planner</title>
+
+  <!-- Favicon using Orange Athletic Pulse SVG Data URI -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6000'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>">
+
+  <!-- Typography: Google Fonts (Online CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Leaflet.js CSS (Interactive Online OpenStreetMap GPS Map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- FontAwesome 6 Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Identity Services (GIS) SDK for Real Google Account Integration -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link (Unit I) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Global Toast / Screen Reader Live Region -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ==================== REAL AUTHENTICATION VIEW (When Logged Out) ==================== -->
+  <div id="auth-screen" class="auth-page-wrapper">
+    <div class="auth-container-grid">
+      
+      <!-- LEFT COLUMN: ATHLETIC BRAND SHOWCASE & LIVE SOCIAL PROOF -->
+      <div class="auth-brand-showcase">
+        <div class="showcase-content">
+          <div class="showcase-top">
+            <a href="#" class="auth-brand-logo">
+              <div class="logo-icon-wrap">
+                <svg class="brand-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <div class="logo-text-group">
+                <span class="showcase-brand-text">Fit<span class="accent-text">Buddy</span></span>
+                <span class="logo-byline" style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em; display: block; margin-top: -2px;">by WebWeavers</span>
+              </div>
+            </a>
+            <span class="showcase-pill"><span class="pulse-live-indicator"></span> Live Training System v6.0</span>
+          </div>
+
+          <div class="showcase-body">
+            <h1 class="showcase-headline">Transform Your Discipline Into Daily Progress.</h1>
+            <p class="showcase-subhead">
+              The real-time fitness platform built for serious athletes and coaches. Track live GPS telemetry, execute day-wise workout splits, and dial in precision nutrition.
+            </p>
+
+            <div class="showcase-feature-list">
+              <div class="showcase-feature-item">
+                <div class="feat-icon">📍</div>
+                <div>
+                  <strong>Live GPS &amp; MET Telemetry</strong>
+                  <p>Real OpenStreetMap route drawing and accurate metabolic calorie burn math.</p>
+                </div>
+              </div>
+              <div class="showcase-feature-item">
+                <div class="feat-icon">🏋️</div>
+                <div>
+                  <strong>Day-Wise Workout Planner</strong>
+                  <p>Distinct Gym and Home splits with 1-click exercise alternatives.</p>
+                </div>
+              </div>
+              <div class="showcase-feature-item">
+                <div class="feat-icon">🥗</div>
+                <div>
+                  <strong>7-Day Veg &amp; Non-Veg Diet</strong>
+                  <p>Macro-calculated meal plans with 1-click diary logging &amp; JSON extraction.</p>
+                </div>
+              </div>
+              <div class="showcase-feature-item">
+                <div class="feat-icon">🛡️</div>
+                <div>
+                  <strong>Role-Based Staff / Coach Portal</strong>
+                  <p>Member roster monitoring, live gym broadcast bulletins, and platform KPIs.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Community Card -->
+            <div class="showcase-testimonial-card">
+              <div class="testi-header">
+                <div class="testi-avatar">⚡</div>
+                <div>
+                  <div class="testi-name">Marcus Vance</div>
+                  <div class="testi-meta">CrossFit Coach &bull; 94-Day FitBuddy Streak</div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+              </div>
+              <p class="testi-quote">
+                "The clean-slate zero start on signup and real-time exercise alternatives made this my daily fitness driver. It feels like a real, high-performance tracking system."
+              </p>
+            </div>
+          </div>
+
+          <div class="showcase-footer">
+            <span>🔒 256-Bit Encrypted Client Storage</span>
+            <span>⚡ Offline PWA Ready</span>
+            <span>✓ Zero Tracking Telemetry</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: INTERACTIVE REAL LOGIN & SIGN UP CARD -->
+      <div class="auth-box">
+        <div class="auth-header">
+          <h2 class="auth-title" id="auth-main-title">Sign In to FitBuddy</h2>
+          <p class="auth-tagline" id="auth-main-subtitle">Access your live training dashboard, workout splits, and nutrition plan</p>
+        </div>
+
+        <!-- Auth Switcher Tabs -->
+        <div class="auth-tab-row" role="tablist">
+          <button class="auth-tab-toggle active" id="tab-login-btn" type="button" role="tab" aria-selected="true">Sign In</button>
+          <button class="auth-tab-toggle" id="tab-signup-btn" type="button" role="tab" aria-selected="false">Create Account</button>
+        </div>
+
+        <!-- Social SSO One-Tap Options -->
+        <div class="social-auth-group">
+          <button type="button" class="btn-social btn-google" id="btn-google-login" title="Sign in with Google">
+            <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span>Continue with Google</span>
+          </button>
+          
+          <button type="button" class="btn-social btn-apple" id="btn-apple-login" title="Sign in with Apple">
+            <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.4c.64-.78 1.08-1.86.96-2.95-1 .04-2.17.67-2.86 1.47-.6.68-1.12 1.77-.98 2.84 1.12.09 2.24-.58 2.88-1.36z"/>
+            </svg>
+            <span>Continue with Apple</span>
+          </button>
+        </div>
+
+        <div class="auth-divider">
+          <span>or continue with email</span>
+        </div>
+
+        <!-- 1. SIGN IN FORM -->
+        <form id="auth-login-form" class="auth-form-card active" novalidate>
+          <div class="form-group">
+            <label for="login-email" class="form-label required">Email Address</label>
+            <div class="input-with-icon">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="login-email" class="form-input with-icon" placeholder="name@example.com" required autocomplete="email">
+            </div>
+            <span class="error-msg" id="login-email-err"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row-between">
+              <label for="login-password" class="form-label required">Password</label>
+              <button type="button" class="text-link-btn" id="forgot-password-link">Forgot password?</button>
+            </div>
+            <div class="input-with-icon password-input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="login-password" class="form-input with-icon with-action" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="password-toggle-btn" id="toggle-login-password-btn" aria-label="Toggle password visibility" title="Show/Hide Password">
+                <span class="eye-icon">👁️</span>
+              </button>
+            </div>
+            <span class="error-msg" id="login-password-err"></span>
+          </div>
+
+          <div class="auth-options-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="login-remember" checked>
+              <span>Keep me signed in for 30 days</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-login-btn">
+            <span class="btn-spinner" hidden></span>
+            <span class="btn-text">Sign In to Dashboard</span>
+          </button>
+
+          <!-- Discreet Demo Accounts helper -->
+          <div class="auth-test-helper">
+            <div class="demo-pills-label">Quick Testing Credentials (1-Click Fill):</div>
+            <div class="demo-pills-row">
+              <button type="button" class="demo-account-chip" id="demo-fill-btn" title="Fill Athlete Account">
+                🏃 Athlete: demo@fitbuddy.app
+              </button>
+              <button type="button" class="demo-account-chip admin-chip" id="admin-fill-btn" title="Fill Coach/Staff Account">
+                🛡️ Staff/Admin: admin@fitbuddy.app
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- 2. REAL SIGN UP FORM -->
+        <form id="auth-signup-form" class="auth-form-card" novalidate>
+          <div class="form-group">
+            <label for="signup-fullname" class="form-label required">Full Name</label>
+            <div class="input-with-icon">
+              <span class="input-icon">👤</span>
+              <input type="text" id="signup-fullname" class="form-input with-icon" placeholder="e.g. Alex Johnson" required autocomplete="name">
+            </div>
+            <span class="error-msg" id="signup-fullname-err"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-email" class="form-label required">Email Address</label>
+            <div class="input-with-icon">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="signup-email" class="form-input with-icon" placeholder="alex@example.com" required autocomplete="email">
+            </div>
+            <span class="error-msg" id="signup-email-err"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Account Role / Type</label>
+            <div class="role-selector-grid">
+              <label class="role-card-option active" id="role-option-athlete">
+                <input type="radio" name="signup-role-radio" value="athlete" checked hidden>
+                <div class="role-card-inner">
+                  <span class="role-icon">🏃</span>
+                  <div>
+                    <strong style="color:var(--text-heading); font-size:0.9rem;">Athlete Member</strong>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">Workout logs, Gym &amp; Home plans, GPS</p>
+                  </div>
+                </div>
+              </label>
+              <label class="role-card-option" id="role-option-staff">
+                <input type="radio" name="signup-role-radio" value="staff" hidden>
+                <div class="role-card-inner">
+                  <span class="role-icon">🛡️</span>
+                  <div>
+                    <strong style="color:var(--text-heading); font-size:0.9rem;">Staff / Coach</strong>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">Member roster, bulletins &amp; KPIs</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-password" class="form-label required">Password</label>
+            <div class="input-with-icon password-input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="signup-password" class="form-input with-icon with-action" placeholder="Create a secure password" required autocomplete="new-password">
+              <button type="button" class="password-toggle-btn" id="toggle-signup-password-btn" aria-label="Toggle password visibility" title="Show/Hide Password">
+                <span class="eye-icon">👁️</span>
+              </button>
+            </div>
+            <div class="password-meter-wrap">
+              <div class="strength-bar-track">
+                <div class="strength-bar-fill" id="signup-strength-bar"></div>
+              </div>
+              <div class="strength-meta-row">
+                <span class="strength-label" id="signup-strength-text">Password strength: none</span>
+                <span class="strength-rules">Min 8 chars, 1 uppercase, 1 number</span>
+              </div>
+            </div>
+            <span class="error-msg" id="signup-password-err"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-confirm-password" class="form-label required">Confirm Password</label>
+            <div class="input-with-icon password-input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="signup-confirm-password" class="form-input with-icon with-action" placeholder="Re-type your password" required autocomplete="new-password">
+              <button type="button" class="password-toggle-btn" id="toggle-signup-confirm-btn" aria-label="Toggle password visibility" title="Show/Hide Password">
+                <span class="eye-icon">👁️</span>
+              </button>
+            </div>
+            <span class="error-msg" id="signup-confirm-err"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label" style="align-items: flex-start; font-size: 0.825rem;">
+              <input type="checkbox" id="signup-terms" checked required style="margin-top: 0.2rem;">
+              <span>I agree to the <a href="#" id="auth-terms-link" style="color:var(--primary); font-weight:700;">Terms of Service</a> and <a href="#" id="auth-privacy-link" style="color:var(--primary); font-weight:700;">Privacy Policy</a></span>
+            </label>
+            <span class="error-msg" id="signup-terms-err"></span>
+          </div>
+
+          <!-- ZERO-RESET FRESH START CALLOUT -->
+          <div class="zero-reset-guarantee">
+            <div class="check-icon-circle">✓</div>
+            <div>
+              <strong>Fresh Start Guarantee:</strong>
+              <p>Steps: 0 | Calories: 0 | Water: 0 ml | Workouts: 0 | Streak: 0 Days</p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-signup-btn">
+            <span class="btn-spinner" hidden></span>
+            <span class="btn-text">Create Free Account &amp; Start at Zero</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== ONBOARDING MODAL (Asked after signing up) ==================== -->
+  <div class="modal-overlay" id="onboarding-modal" role="dialog" aria-modal="true" aria-labelledby="onboarding-modal-title" hidden>
+    <div class="modal-card onboarding-modal-card">
+      <div class="modal-header">
+        <h3 id="onboarding-modal-title" class="modal-title">Welcome! Enter Your Full Name</h3>
+      </div>
+
+      <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+        Let's personalize your account. As you sign up, all workout records, steps, calories, and water are <strong>reset to zero</strong> so you start fresh today!
+      </p>
+
+      <form id="onboarding-form" class="modal-form">
+        <div class="form-group">
+          <label for="onboard-name" class="form-label required">What is your Full Name?</label>
+          <input type="text" id="onboard-name" class="form-input form-input-lg" placeholder="e.g. Alex Johnson" required minlength="2" autofocus>
+          <span class="error-msg" id="onboard-name-err"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Choose Your Athlete Avatar:</label>
+          <div class="avatar-options-grid" id="onboard-avatar-picker">
+            <button type="button" class="avatar-option-btn active" data-avatar="🏃">🏃</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🏋️">🏋️</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🚴">🚴</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🥊">🥊</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🧘">🧘</button>
+            <button type="button" class="avatar-option-btn" data-avatar="⚡">⚡</button>
+          </div>
+          <input type="hidden" id="onboard-selected-avatar" value="🏃">
+        </div>
+
+        <div class="form-group">
+          <label for="onboard-goal" class="form-label">Primary Fitness Goal:</label>
+          <select id="onboard-goal" class="form-select">
+            <option value="General Fitness" selected>General Fitness &amp; Vitality</option>
+            <option value="Fat Loss &amp; Shredding">Fat Loss &amp; Shredding</option>
+            <option value="Muscle Hypertrophy">Muscle Hypertrophy &amp; Growth</option>
+            <option value="Strength &amp; Power">Strength &amp; Power</option>
+            <option value="Endurance &amp; Running">Endurance &amp; Running</option>
+          </select>
+        </div>
+
+        <div class="zero-reset-guarantee">
+          <div class="check-icon-circle">✓</div>
+          <div>
+            <strong>Fresh Start Guaranteed:</strong>
+            <p>Steps: 0 | Calories: 0 | Water: 0 ml | Activities: 0 | Streak: 0 Days</p>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-onboarding-btn">
+          Start Fresh &amp; Enter FitBuddy
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN APPLICATION INTERFACE (When Logged In) ==================== -->
+  <div id="app-view" style="display: none;">
+    <!-- App Header & Navigation (Orange & White Athletic Header) -->
+    <header class="app-header" role="banner">
+      <div class="header-container">
+        <div class="brand-group">
+          <button id="mobile-menu-btn" class="icon-btn mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <a href="#dashboard" class="logo-link" aria-label="FitBuddy by WebWeavers Home">
+            <div class="logo-icon-wrap">
+              <svg class="brand-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div class="logo-text-group">
+              <span class="logo-text">Fit<span class="accent-text">Buddy</span></span>
+              <span class="logo-byline">by WebWeavers</span>
+            </div>
+          </a>
+          <span class="syllabus-pill" id="open-syllabus-btn" title="View CSE326 Syllabus Coverage">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/></svg>
+            Syllabus Guide
+          </span>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="main-nav" id="main-nav" aria-label="Primary Navigation">
+          <ul class="nav-list">
+            <li><a href="#dashboard" class="nav-link active" data-tab="dashboard">Dashboard</a></li>
+            <li><a href="#activities" class="nav-link" data-tab="activities">Activity Log</a></li>
+            <li><a href="#challenges" class="nav-link" data-tab="challenges">Challenges</a></li>
+            <li><a href="#planner" class="nav-link" data-tab="planner">Day-Wise Workout Planner</a></li>
+            <li><a href="#diet" class="nav-link" data-tab="diet">🥗 Diet Plan</a></li>
+            <li id="admin-nav-item"><a href="#admin-portal" class="nav-link" data-tab="admin-portal">Coach / Staff</a></li>
+          </ul>
+        </nav>
+
+        <!-- Action Controls -->
+        <div class="header-actions">
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle-btn" class="icon-btn" aria-label="Switch between light and dark theme" title="Toggle Theme">
+            <svg id="theme-icon-sun" class="theme-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg id="theme-icon-moon" class="theme-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <!-- Log Activity Button -->
+          <button id="quick-log-btn" class="btn btn-primary btn-sm">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            <span>+ Log Activity</span>
+          </button>
+
+          <!-- User Profile Trigger -->
+          <button id="header-profile-btn" class="btn btn-outline btn-sm" title="Edit Profile & Fitness Targets">
+            <span id="header-avatar-badge" style="margin-right: 0.25rem;">🏃</span>
+            <span id="header-user-name">Athlete</span>
+          </button>
+
+          <!-- Real Logout Button -->
+          <button id="header-logout-btn" class="btn btn-outline-danger btn-sm" title="Sign out of your account" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top Role & Live Indicator Bar -->
+    <aside class="live-status-banner" aria-label="Active Live Tracking Status">
+      <div class="banner-content">
+        <div class="banner-info">
+          <span class="live-indicator-dot"></span>
+          <span>Logged in as: <strong id="current-user-role-label">Athlete Profile</strong></span>
+          <span id="current-user-email-tag" style="color: var(--text-subtle); margin-left: 0.35rem;"></span>
+        </div>
+        <div class="profile-quick-actions">
+          <span style="font-size: 0.775rem; color: var(--text-muted); font-weight: 600;">Mode:</span>
+          <button class="btn btn-chip active" id="mode-athlete-btn" title="Personal Tracking Mode">🏃 Athlete Mode</button>
+          <button class="btn btn-chip" id="mode-coach-btn" title="Coach & Staff Mode">🛡️ Coach / Staff Mode</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content" role="main">
+
+      <!-- HERO LIVE TRACKER STRIP -->
+      <section class="live-tracker-hero" aria-label="Real-time Live Workout Tracker">
+        <div class="hero-left">
+          <div>
+            <span class="hero-pulse-badge">
+              <span class="hero-white-dot"></span>
+              REAL-TIME SENSORS ACTIVE
+            </span>
+            <h1 class="hero-title" id="hero-greeting">Welcome, Athlete</h1>
+            <p class="hero-subtitle">All metrics are tracked live today. Zero placeholder numbers.</p>
+          </div>
+        </div>
+
+        <div class="hero-actions-cluster">
+          <button class="btn btn-hero-white btn-lg" id="hero-start-gps-btn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            Start Live GPS Workout
+          </button>
+          <button class="btn btn-hero-outline btn-lg" id="hero-diet-btn">
+            <span style="font-size: 1.15rem; margin-right: 0.35rem;">🥗</span>
+            Day-Wise Diet Plan
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 1: DASHBOARD ==================== -->
+      <section id="dashboard-tab" class="tab-pane active" aria-labelledby="tab-dashboard-heading">
+        <h2 id="tab-dashboard-heading" class="sr-only">Live Daily Fitness Dashboard</h2>
+
+        <!-- Athlete Daily Status Bar -->
+        <article class="athlete-status-bar" id="athlete-status-container">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <div class="status-avatar-badge" id="dashboard-user-avatar">🏃</div>
+            <div>
+              <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: var(--primary); letter-spacing: 0.06em;">Daily Athlete Status</span>
+              <p id="dashboard-status-text" style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin: 0.15rem 0 0 0;">Crushing my daily fitness goals! 💪</p>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-xs" id="edit-daily-status-btn" title="Update your daily motto">
+            ✏️ Update Status
+          </button>
+        </article>
+
+        <!-- Coach & Community Broadcast Card -->
+        <aside class="coach-announcement-card" id="coach-announcements-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span class="badge" style="background: var(--primary); color: #fff; font-weight: 800;">📢 Coach Broadcast</span>
+              <span style="font-size: 0.775rem; color: var(--text-muted);" id="announcement-timestamp">Live</span>
+            </div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;" id="announcement-author">From Head Coach Alex</span>
+          </div>
+          <h4 id="announcement-title" style="font-size: 1rem; font-weight: 800; color: var(--text-heading); margin: 0.2rem 0;">🔥 Welcome to the 30-Day Fitness Challenge!</h4>
+          <p id="announcement-message" style="font-size: 0.875rem; color: var(--text-body); margin: 0;">Stay hydrated, hit your daily targets, and don't skip your Day-Wise workout plan!</p>
+        </aside>
+
+        <!-- Motivational Quote Banner (Online API + Local Fallback) -->
+        <article class="quote-card white-card" id="quote-container">
+          <div class="quote-content">
+            <svg class="quote-icon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <div class="quote-text-group">
+              <blockquote id="quote-text" class="quote-text">The only bad workout is the one that didn't happen.</blockquote>
+              <figcaption id="quote-author" class="quote-author">— Daily Inspiration</figcaption>
+            </div>
+          </div>
+          <button id="refresh-quote-btn" class="icon-btn quote-refresh" title="Fetch new motivational quote" aria-label="Fetch new motivational quote">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          </button>
+        </article>
+
+        <!-- 5 REAL-TIME DAILY SUMMARY METRICS -->
+        <div class="dashboard-grid">
+          <!-- CARD 1: DAILY STEPS -->
+          <article class="stat-card white-card" aria-label="Daily Steps Metric">
+            <div class="stat-header">
+              <div class="stat-icon-wrap bg-orange-light text-orange">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4v16M7 8l6-4 6 4M7 16l6 4 6-4"/></svg>
+              </div>
+              <span class="stat-tag" id="steps-pct-tag">0%</span>
+            </div>
+            <div class="stat-value-group">
+              <div class="stat-number" id="dash-steps-val">0</div>
+              <div class="stat-label">Daily Steps (<span id="dash-steps-goal">10,000</span> goal)</div>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill fill-orange" id="steps-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="stat-actions-row">
+              <button class="btn btn-xs btn-outline" id="add-500-steps-btn">+500</button>
+              <button class="btn btn-xs btn-outline" id="add-1000-steps-btn">+1000</button>
+              <button class="btn btn-xs btn-primary" id="toggle-step-counter-btn">Simulate Walking</button>
+            </div>
+          </article>
+
+          <!-- CARD 2: ACTIVE CALORIES -->
+          <article class="stat-card white-card" aria-label="Active Calories Metric">
+            <div class="stat-header">
+              <div class="stat-icon-wrap bg-orange-light text-orange">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+              </div>
+              <span class="stat-tag" id="cal-pct-tag">0%</span>
+            </div>
+            <div class="stat-value-group">
+              <div class="stat-number" id="dash-calories-val">0</div>
+              <div class="stat-label">Active Burn (<span id="dash-calories-goal">650</span> kcal)</div>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill fill-orange" id="cal-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="stat-actions-row">
+              <span class="stat-subtext" id="cal-burn-subtext">0 kcal burned from logged activities</span>
+            </div>
+          </article>
+
+          <!-- CARD 3: WATER HYDRATION -->
+          <article class="stat-card white-card" aria-label="Hydration Metric">
+            <div class="stat-header">
+              <div class="stat-icon-wrap bg-orange-light text-orange">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <span class="stat-tag" id="water-pct-tag">0%</span>
+            </div>
+            <div class="stat-value-group">
+              <div class="stat-number"><span id="dash-water-val">0</span> <span style="font-size:1.1rem; font-weight:600;">ml</span></div>
+              <div class="stat-label">Hydration (<span id="dash-water-goal">2500</span> ml target)</div>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill fill-orange" id="water-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="stat-actions-row">
+              <button class="btn btn-xs btn-outline" id="add-250-water-btn">+250 ml</button>
+              <button class="btn btn-xs btn-outline" id="add-500-water-btn">+500 ml</button>
+              <button class="btn btn-xs btn-ghost text-danger" id="reset-water-btn">Reset</button>
+            </div>
+          </article>
+
+          <!-- CARD 4: ACTIVE WORKOUT MINUTES -->
+          <article class="stat-card white-card" aria-label="Active Workout Time Metric">
+            <div class="stat-header">
+              <div class="stat-icon-wrap bg-orange-light text-orange">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <span class="stat-tag" id="time-sessions-count">0 sessions</span>
+            </div>
+            <div class="stat-value-group">
+              <div class="stat-number"><span id="dash-active-time-val">0</span> <span style="font-size:1.1rem; font-weight:600;">mins</span></div>
+              <div class="stat-label">Active Workout Time Today</div>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill fill-orange" id="time-progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="stat-actions-row">
+              <span class="stat-subtext" id="time-subtext">Ready for your first session</span>
+            </div>
+          </article>
+
+          <!-- CARD 5: STREAK & TOTALS -->
+          <article class="stat-card white-card" aria-label="Streak Counter">
+            <div class="stat-header">
+              <div class="stat-icon-wrap bg-orange-light text-orange">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 23c6.075 0 11-4.925 11-11 0-4.57-2.775-8.497-6.727-10.198a.5.5 0 0 0-.67.485c.04 1.157-.14 2.333-.556 3.447C13.826 3.82 12.025 2 9.5 2c-.31 0-.58.21-.65.51C8.22 5.09 7 7.74 7 10.5c0 .34.02.68.07 1.01C5.23 10.42 4 8.61 4 6.5a.5.5 0 0 0-.85-.35C1.84 7.67 1 9.74 1 12c0 6.075 4.925 11 11 11z"/></svg>
+              </div>
+              <span class="streak-flame-pill" id="dash-streak-badge">🔥 0-DAY STREAK</span>
+            </div>
+            <div class="stat-value-group">
+              <div class="stat-number" id="dash-streak-days">0</div>
+              <div class="stat-label">Consecutive Active Days</div>
+            </div>
+            <div class="stat-actions-row" style="margin-top: 1rem;">
+              <span class="stat-subtext" id="streak-subtext">Log a workout today to initiate streak!</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- 7-DAY DYNAMIC SVG ACTIVITY & CALORIE VISUALIZER -->
+        <section class="white-card analytics-section">
+          <div class="section-title-bar">
+            <div>
+              <h3 class="subsection-title">7-Day Real Calorie Burn &amp; Activity Volume</h3>
+              <p class="section-desc">Dynamic SVG chart recalculated strictly from your actual logged workouts</p>
+            </div>
+            <span class="badge" style="background:#fff0e6; color:#ff6000; font-weight:700;">Live SVG Rendering</span>
+          </div>
+
+          <div class="chart-wrapper">
+            <svg id="weekly-calorie-chart" class="responsive-svg-chart" viewBox="0 0 700 240" aria-label="Weekly Calorie Bar Chart">
+              <!-- Dynamically generated via JS -->
+            </svg>
+          </div>
+        </section>
+
+        <!-- TODAY'S SCHEDULED WORKOUT PREVIEW -->
+        <section class="white-card" style="margin-bottom: 1.5rem;">
+          <div class="section-title-bar">
+            <div>
+              <span class="badge" id="today-day-badge" style="background:#fff0e6; color:#ff6000; font-weight:700;">Monday Plan</span>
+              <h3 class="subsection-title" id="today-workout-title" style="margin-top:0.25rem;">Chest, Shoulders &amp; Triceps</h3>
+            </div>
+            <button class="btn btn-outline btn-sm" id="jump-to-planner-btn">Open Day-Wise Planner</button>
+          </div>
+          <div id="today-exercises-preview-list" class="today-preview-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+      </section>
+
+      <!-- ==================== TAB 2: DAILY ACTIVITY LOG ==================== -->
+      <section id="activities-tab" class="tab-pane" aria-labelledby="tab-activities-heading">
+        <div class="section-title-bar">
+          <div>
+            <h2 id="tab-activities-heading" class="section-heading">Daily Activity Records</h2>
+            <p class="section-desc">Real fitness diary: search, filter, edit, delete, and export your actual workout history</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-outline btn-sm" id="export-csv-btn" title="Export records to CSV spreadsheet">
+              <i class="fa-solid fa-file-csv" style="margin-right: 0.35rem;"></i> Export CSV
+            </button>
+            <button class="btn btn-primary" id="open-log-modal-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+              Record Workout
+            </button>
+          </div>
+        </div>
+
+        <!-- Search & Filters Toolbar -->
+        <div class="filters-toolbar white-card">
+          <div class="search-field-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="activity-search-input" class="form-input search-input" placeholder="Search by activity name, notes, or category..." aria-label="Search activities">
+          </div>
+
+          <div class="filter-controls-group">
+            <div class="filter-item">
+              <label for="filter-category" class="filter-label">Category:</label>
+              <select id="filter-category" class="form-select">
+                <option value="all">All Categories</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Strength">Strength</option>
+                <option value="HIIT">HIIT</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Walking">Walking</option>
+                <option value="Swimming">Swimming</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="filter-status" class="filter-label">Status:</label>
+              <select id="filter-status" class="form-select">
+                <option value="all">All Statuses</option>
+                <option value="Completed">Completed</option>
+                <option value="In Progress">In Progress</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="sort-activities" class="filter-label">Sort by:</label>
+              <select id="sort-activities" class="form-select">
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="calories-desc">Highest Calories</option>
+                <option value="duration-desc">Longest Duration</option>
+              </select>
+            </div>
+
+            <button id="reset-filters-btn" class="btn btn-ghost btn-sm">Reset</button>
+          </div>
+        </div>
+
+        <!-- Activity Records Table -->
+        <div class="table-container white-card">
+          <table class="data-table" id="activities-table">
+            <caption class="sr-only">List of logged fitness activity records</caption>
+            <thead>
+              <tr>
+                <th scope="col">Date &amp; Time</th>
+                <th scope="col">Activity &amp; Category</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Calories</th>
+                <th scope="col">Intensity</th>
+                <th scope="col">Status (1-Click Toggle)</th>
+                <th scope="col" class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="activities-tbody">
+              <!-- Dynamic rows populated via JS -->
+            </tbody>
+            <tfoot>
+              <tr class="table-summary-row">
+                <td colspan="2"><strong>Total Logged Records (<span id="total-records-count">0</span>)</strong></td>
+                <td id="summary-total-duration"><strong>0 mins</strong></td>
+                <td id="summary-total-calories"><strong>0 kcal</strong></td>
+                <td colspan="3" class="text-right">
+                  <button id="export-json-btn" class="btn btn-ghost btn-xs">Export JSON</button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 3: CHALLENGE PROGRAMS ==================== -->
+      <section id="challenges-tab" class="tab-pane" aria-labelledby="tab-challenges-heading">
+        <div class="section-title-bar">
+          <div>
+            <h2 id="tab-challenges-heading" class="section-heading">Active Fitness Challenges</h2>
+            <p class="section-desc">Community-driven commitment programs with live progress rings &amp; milestones</p>
+          </div>
+          <button class="btn btn-outline" id="open-create-challenge-btn">+ Propose Challenge</button>
+        </div>
+
+        <div class="challenges-grid" id="challenges-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- ==================== TAB 4: DAY-WISE WORKOUT PLANNER ==================== -->
+      <section id="planner-tab" class="tab-pane" aria-labelledby="tab-planner-heading">
+        <div class="section-title-bar">
+          <div>
+            <h2 id="tab-planner-heading" class="section-heading">Day-Wise Workout Planner</h2>
+            <p class="section-desc">Structured 7-day science-backed training split with distinct Gym and Home workout plans &amp; exercise alternatives</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-outline btn-sm" id="reset-weekly-plan-btn">Reset Plan</button>
+          </div>
+        </div>
+
+        <!-- DUAL-SPLIT SELECTOR: GYM WORKOUTS VS HOME WORKOUTS -->
+        <div class="planner-split-switcher" role="tablist" aria-label="Workout Environment Split Switcher">
+          <button class="split-tab-btn active" id="split-gym-btn" type="button" role="tab" aria-selected="true">
+            <span class="split-icon">🏋️</span>
+            <div>
+              <strong>Gym Workouts Plan</strong>
+              <small>Barbells, Dumbbells, Cables &amp; Heavy Compound Lifts</small>
+            </div>
+          </button>
+          <button class="split-tab-btn" id="split-home-btn" type="button" role="tab" aria-selected="false">
+            <span class="split-icon">🏠</span>
+            <div>
+              <strong>Home Workouts Plan</strong>
+              <small>Calisthenics, Bodyweight Circuits, Core &amp; Resistance Bands</small>
+            </div>
+          </button>
+        </div>
+
+        <!-- Dynamic Split Info Banner -->
+        <div class="split-desc-banner" id="planner-active-banner">
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span class="badge" id="planner-banner-badge" style="background:#ff6000; color:#fff; font-weight:800; font-size:0.75rem; padding:0.25rem 0.75rem; border-radius:9999px;">GYM SPLIT ACTIVE</span>
+            <span id="planner-banner-text" style="font-size:0.875rem; color:var(--text-color); font-weight:600;">Heavy Compound Lifts (Barbells, Dumbbells, Cables) • Target: Hypertrophy &amp; Maximal Strength</span>
+          </div>
+          <span class="text-muted" style="font-size:0.8rem;" id="planner-banner-stats">7 Training Days Configured • 1-2 Alternatives per Exercise</span>
+        </div>
+
+        <!-- Exercise Search Toolbar for Day-Wise Planner -->
+        <div class="white-card" style="margin-bottom: 1.25rem; padding: 0.85rem 1.25rem;">
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <div class="search-field-wrap" style="flex: 1;">
+              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="search" id="planner-search-input" class="form-input search-input" placeholder="Search exercises in current split (e.g. bench, squat, pushup, pull-up, abs, lunge)...">
+            </div>
+            <span class="search-count-pill" id="planner-search-badge" style="display: none;">Found 0</span>
+          </div>
+        </div>
+
+        <!-- 7-DAY SCHEDULE GRID -->
+        <div class="weekly-schedule-grid" id="day-wise-schedule-container">
+          <!-- 7 Days rendered dynamically with exercise cards and 1-2 alternatives -->
+        </div>
+
+        <!-- Exercise Pool for Drag & Drop additions -->
+        <div class="white-card pool-card" style="margin-top: 2rem;">
+          <div class="section-title-bar">
+            <div>
+              <h3 class="subsection-title">Exercise Library &amp; Drag-and-Drop Pool</h3>
+              <p class="section-desc">Drag any exercise below into any day card above to customize your training plan</p>
+            </div>
+          </div>
+          <div class="exercise-pool" id="exercise-pool">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 5: DAY-WISE DIET & NUTRITION ==================== -->
+      <section id="diet-tab" class="tab-pane" aria-labelledby="tab-diet-heading">
+        <div class="section-title-bar">
+          <div>
+            <span class="badge" style="background:#fff0e6; color:#ff6000; font-weight:800;">Science-Backed Nutrition</span>
+            <h2 id="tab-diet-heading" class="section-heading">Day-Wise Athletic Diet &amp; Meal Plans</h2>
+            <p class="section-desc">Complete daily nutritional breakdown with Vegetarian &amp; Non-Vegetarian meal splits, exact macro profiles, and web data extraction</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-outline btn-sm" id="export-diet-json-btn" title="Extract diet plan as clean JSON file">
+              <i class="fa-solid fa-file-code" style="margin-right: 0.35rem;"></i> Extract Diet JSON
+            </button>
+            <button class="btn btn-primary btn-sm" id="refresh-diet-web-btn" title="Fetch fresh nutrition data from web">
+              <i class="fa-solid fa-arrows-rotate" style="margin-right: 0.35rem;"></i> Sync Web Nutrition
+            </button>
+          </div>
+        </div>
+
+        <!-- 7-DAY NAVIGATION SELECTOR -->
+        <div class="diet-day-nav" role="tablist" aria-label="Select Day of Week">
+          <button class="diet-day-btn active" data-day="Monday"><span>📅</span> Monday</button>
+          <button class="diet-day-btn" data-day="Tuesday"><span>📅</span> Tuesday</button>
+          <button class="diet-day-btn" data-day="Wednesday"><span>📅</span> Wednesday</button>
+          <button class="diet-day-btn" data-day="Thursday"><span>📅</span> Thursday</button>
+          <button class="diet-day-btn" data-day="Friday"><span>📅</span> Friday</button>
+          <button class="diet-day-btn" data-day="Saturday"><span>📅</span> Saturday</button>
+          <button class="diet-day-btn" data-day="Sunday"><span>📅</span> Sunday</button>
+        </div>
+
+        <!-- FILTER & PREFERENCE TOOLBAR -->
+        <div class="white-card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem;">
+          <div class="diet-filter-toolbar">
+            <!-- Veg / Non-Veg Switcher -->
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+              <span style="font-size: 0.825rem; font-weight: 700; color: var(--text-heading);">Diet Preference:</span>
+              <div class="diet-type-switchers" role="radiogroup">
+                <button class="diet-type-btn active" data-type="all">🥗 All Options</button>
+                <button class="diet-type-btn" data-type="veg">🌱 Vegetarian Only</button>
+                <button class="diet-type-btn" data-type="nonveg">🍗 Non-Veg Only</button>
+              </div>
+            </div>
+
+            <!-- Food Search Box -->
+            <div class="search-field-wrap" style="min-width: 260px; flex: 1; max-width: 360px;">
+              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="search" id="diet-search-input" class="form-input search-input" placeholder="Search meal or ingredient (e.g. paneer, oats, salmon, chicken)...">
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY MACRO TARGETS SUMMARY BANNER -->
+        <div class="white-card" style="margin-bottom: 1.5rem; border-left: 5px solid var(--primary); padding: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.85rem;">
+            <div>
+              <span class="badge" id="diet-active-day-badge" style="background:#fff0e6; color:#ff6000; font-weight:800;">Monday Plan</span>
+              <h3 id="diet-day-focus-title" style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading); margin-top: 0.25rem;">High Protein Kickoff &amp; Muscle Priming</h3>
+            </div>
+            <span class="badge" style="background:#e0f2fe; color:#0284c7; font-weight:700;" id="diet-source-badge">Web-Extracted NIH/ISSN Standard</span>
+          </div>
+
+          <div class="diet-macros-summary">
+            <div class="diet-macro-card">
+              <div class="lbl">Target Energy</div>
+              <div class="val" id="macro-calories-val" style="color:#ff6000;">2,150 kcal</div>
+            </div>
+            <div class="diet-macro-card">
+              <div class="lbl">Protein Target</div>
+              <div class="val" id="macro-protein-val" style="color:#2563eb;">140 g</div>
+            </div>
+            <div class="diet-macro-card">
+              <div class="lbl">Carbohydrates</div>
+              <div class="val" id="macro-carbs-val" style="color:#d97706;">220 g</div>
+            </div>
+            <div class="diet-macro-card">
+              <div class="lbl">Healthy Fats</div>
+              <div class="val" id="macro-fats-val" style="color:#4f46e5;">65 g</div>
+            </div>
+            <div class="diet-macro-card">
+              <div class="lbl">Hydration</div>
+              <div class="val" id="macro-water-val" style="color:#0891b2;">3.0 L</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 MEAL CARDS CONTAINER -->
+        <div class="diet-meals-list" id="diet-meals-container">
+          <!-- Dynamically populated by JS from diet.json / state -->
+        </div>
+
+        <!-- WEB EXTRACTION & NUTRITION GUIDE BANNER -->
+        <div class="white-card" style="margin-top: 2rem; background: linear-gradient(135deg, #fffaf5, #ffffff); border: 1.5px solid rgba(255,96,0,0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 0.35rem;">🌐 Web-Extracted Nutrition Architecture</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                All meal plans are structured according to ISSN (International Society of Sports Nutrition) guidelines. You can copy or extract the raw JSON dataset anytime.
+              </p>
+            </div>
+            <button class="btn btn-outline btn-xs" id="copy-diet-json-btn">Copy Raw Diet JSON</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 6: COACH & STAFF ADMIN PORTAL ==================== -->
+      <section id="admin-portal-tab" class="tab-pane" aria-labelledby="tab-admin-heading">
+        <div class="section-title-bar">
+          <div>
+            <span class="badge" style="background:#fff0e6; color:#ff6000; font-weight:800;">Staff Operations</span>
+            <h2 id="tab-admin-heading" class="section-heading">Coach &amp; Community Operations</h2>
+            <p class="section-desc">Broadcast gym announcements, manage challenge programs, and inspect aggregate gym metrics</p>
+          </div>
+          <span class="badge" style="background:#dcfce7; color:#16a34a; font-weight:700;">Role: Staff / Admin</span>
+        </div>
+
+        <!-- Platform KPIs -->
+        <div class="dashboard-grid" style="margin-bottom: 1.5rem;">
+          <div class="white-card">
+            <span style="font-size: 0.825rem; color: var(--text-muted); font-weight: 700;">TOTAL LOGGED WORKOUTS</span>
+            <div class="stat-number" id="admin-total-workouts" style="margin: 0.35rem 0;">0</div>
+            <span style="font-size: 0.8rem; color: var(--success); font-weight: 600;">Across all athletes</span>
+          </div>
+          <div class="white-card">
+            <span style="font-size: 0.825rem; color: var(--text-muted); font-weight: 700;">TOTAL CALORIES BURNED</span>
+            <div class="stat-number" id="admin-total-calories" style="margin: 0.35rem 0;">0 kcal</div>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Real aggregate energy</span>
+          </div>
+          <div class="white-card">
+            <span style="font-size: 0.825rem; color: var(--text-muted); font-weight: 700;">ACTIVE ATHLETES</span>
+            <div class="stat-number" id="admin-total-members" style="margin: 0.35rem 0;">2</div>
+            <span style="font-size: 0.8rem; color: #ff6000; font-weight: 600;">Registered accounts</span>
+          </div>
+          <div class="white-card">
+            <span style="font-size: 0.825rem; color: var(--text-muted); font-weight: 700;">ACTIVE CHALLENGE PROGRAMS</span>
+            <div class="stat-number" id="admin-total-challenges" style="margin: 0.35rem 0;">4</div>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Available in Challenges tab</span>
+          </div>
+        </div>
+
+        <!-- Registered Athlete Roster Table -->
+        <article class="white-card" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.25rem;">Registered Athlete Member Roster</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Inspect member profiles, workouts logged, calories burned, and live streaks.</p>
+            </div>
+            <span class="badge" id="roster-count-badge" style="background:#fff0e6; color:#ff6000; font-weight:700;">All Members</span>
+          </div>
+          <div class="table-container" style="box-shadow: none; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+            <table class="roster-table" id="admin-roster-table">
+              <thead>
+                <tr>
+                  <th>Athlete</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Workouts Logged</th>
+                  <th>Calories Burned</th>
+                  <th>Streak</th>
+                  <th>Current Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-roster-tbody">
+                <!-- Dynamically populated from AppState.accounts -->
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Broadcast Form -->
+        <article class="white-card" style="margin-bottom: 1.5rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem;">Broadcast Gym Announcement</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Post live notifications to all active athletes across the platform.</p>
+          <form id="admin-broadcast-form" class="standard-form">
+            <div class="form-group">
+              <label for="broadcast-title" class="form-label required">Announcement Title</label>
+              <input type="text" id="broadcast-title" class="form-input" placeholder="e.g. Saturday Morning 5K Outdoor Run" required>
+            </div>
+            <div class="form-group">
+              <label for="broadcast-message" class="form-label required">Announcement Message</label>
+              <textarea id="broadcast-message" class="form-textarea" rows="3" placeholder="Enter broadcast text for athletes..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Broadcast Announcement</button>
+          </form>
+        </article>
+      </section>
+
+    </main>
+
+    <!-- Semantic Footer -->
+    <footer class="app-footer" role="contentinfo">
+      <div class="footer-container">
+        <div class="footer-brand-col">
+          <div class="logo-text" style="font-size: 1.35rem; font-weight: 800;">Fit<span class="accent-text">Buddy</span> <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">by WebWeavers</span></div>
+          <p class="footer-tagline">Real-time live daily fitness tracking web app with Day-Wise Workout Planner, Day-Wise Diet, and Orange &amp; White athletic aesthetic. Crafted by WebWeavers for CSE326: Internet Programming.</p>
+          <p class="copyright-text">&copy; 2026-27 FitBuddy by WebWeavers. All rights reserved.</p>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Features</h4>
+          <ul class="footer-list">
+            <li><a href="#dashboard" class="footer-link">Live Dashboard</a></li>
+            <li><a href="#activities" class="footer-link">Activity Records</a></li>
+            <li><a href="#challenges" class="footer-link">Challenge Programs</a></li>
+            <li><a href="#planner" class="footer-link">Day-Wise Planner</a></li>
+            <li><a href="#diet" class="footer-link">Day-Wise Diet (Veg/Non-Veg)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Technologies</h4>
+          <ul class="footer-list">
+            <li><span class="tech-tag">HTML5 Semantic &amp; PWA</span></li>
+            <li><span class="tech-tag">Orange &amp; White CSS3</span></li>
+            <li><span class="tech-tag">Live Leaflet &amp; GPS API</span></li>
+            <li><span class="tech-tag">Web Storage API</span></li>
+            <li><span class="tech-tag">Drag &amp; Drop API</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Course Verification</h4>
+          <p class="syllabus-compliance-note">Fulfills Unit I to VI &amp; Practicals for CSE326: Internet Programming.</p>
+          <button class="btn btn-outline btn-xs" id="footer-syllabus-btn">View Syllabus Mapping</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==================== MODALS & LIVE STATIONS ==================== -->
+
+  <!-- MODAL 1: REAL-TIME LIVE GPS & WORKOUT SESSION (Leaflet OpenStreetMap) -->
+  <div class="modal-overlay" id="gps-modal" role="dialog" aria-modal="true" aria-labelledby="gps-modal-title" hidden>
+    <div class="modal-card live-session-modal-card">
+      <div class="modal-header">
+        <h3 id="gps-modal-title" class="modal-title">Live Workout Session Tracker</h3>
+        <button class="icon-btn close-modal-btn" data-close="gps-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="form-group" style="text-align: left; margin-bottom: 0.75rem;">
+        <label for="live-activity-type" class="form-label">Activity Type:</label>
+        <select id="live-activity-type" class="form-select">
+          <option value="Running" data-met="9.8">Outdoor Running (MET ~ 9.8)</option>
+          <option value="Walking" data-met="3.8">Brisk Walking (MET ~ 3.8)</option>
+          <option value="Cycling" data-met="7.5">Cycling (MET ~ 7.5)</option>
+          <option value="HIIT" data-met="11.0">HIIT Circuit (MET ~ 11.0)</option>
+        </select>
+      </div>
+
+      <div class="live-dial-container">
+        <span class="timer-phase-pill" id="live-session-status">READY TO START</span>
+        <div class="live-time-ticker" id="live-stopwatch-display">00:00:00</div>
+        
+        <div class="live-metrics-matrix">
+          <div class="live-stat-card">
+            <span class="live-stat-number" id="live-distance-val">0.00</span>
+            <span class="live-stat-label">Distance (km)</span>
+          </div>
+          <div class="live-stat-card">
+            <span class="live-stat-number" id="live-calories-val">0</span>
+            <span class="live-stat-label">Calories (kcal)</span>
+          </div>
+          <div class="live-stat-card">
+            <span class="live-stat-number" id="live-pace-val">--:--</span>
+            <span class="live-stat-label">Pace (min/km)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Interactive Leaflet OpenStreetMap Container -->
+      <div id="live-map-view"></div>
+
+      <div class="gps-status-panel glass-subpanel" style="text-align: left;">
+        <div class="gps-coords-row">
+          <span>Latitude: <strong id="gps-lat">--.------</strong></span>
+          <span>Longitude: <strong id="gps-lng">--.------</strong></span>
+        </div>
+        <div class="gps-meta-row" style="margin-top: 0.25rem;">
+          <span>Satellite Accuracy: <strong id="gps-acc">-- m</strong></span>
+          <span>GPS Signal: <strong id="gps-signal-status">Waiting for start</strong></span>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="justify-content: center; gap: 0.75rem;">
+        <button class="btn btn-outline" id="live-session-pause-btn" style="display:none;">Pause</button>
+        <button class="btn btn-primary btn-lg" id="live-session-start-btn">Start Live Session</button>
+        <button class="btn btn-secondary" id="live-session-finish-btn" style="display:none;">Finish &amp; Save Workout</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 3: LOG / EDIT ACTIVITY MODAL -->
+  <div class="modal-overlay" id="activity-modal" role="dialog" aria-modal="true" aria-labelledby="activity-modal-title" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="activity-modal-title" class="modal-title">Record Fitness Activity</h3>
+        <button class="icon-btn close-modal-btn" data-close="activity-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="activity-form" class="modal-form" novalidate>
+        <input type="hidden" id="edit-activity-id" value="">
+
+        <fieldset class="form-fieldset">
+          <legend class="form-legend">Activity Details</legend>
+          
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="act-title" class="form-label required">Activity Name</label>
+              <input type="text" id="act-title" class="form-input" placeholder="e.g. 5K Road Run, Upper Body Lift" required minlength="3" maxlength="40">
+              <span class="error-msg" id="act-title-err"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="act-category" class="form-label required">Category</label>
+              <select id="act-category" class="form-select" required>
+                <option value="" disabled selected>Select category...</option>
+                <optgroup label="Cardiovascular">
+                  <option value="Cardio">Cardio Running / Cycling</option>
+                  <option value="Walking">Power Walking</option>
+                  <option value="Swimming">Swimming</option>
+                </optgroup>
+                <optgroup label="Strength &amp; Mobility">
+                  <option value="Strength">Strength &amp; Weights</option>
+                  <option value="HIIT">HIIT Training</option>
+                  <option value="Yoga">Yoga &amp; Flexibility</option>
+                </optgroup>
+              </select>
+              <span class="error-msg" id="act-category-err"></span>
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label for="act-date" class="form-label required">Date</label>
+              <input type="date" id="act-date" class="form-input" required>
+              <span class="error-msg" id="act-date-err"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="act-time" class="form-label required">Time</label>
+              <input type="time" id="act-time" class="form-input" required>
+              <span class="error-msg" id="act-time-err"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="act-status" class="form-label">Status</label>
+              <select id="act-status" class="form-select">
+                <option value="Completed">Completed</option>
+                <option value="In Progress">In Progress</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-fieldset">
+          <legend class="form-legend">Performance Metrics</legend>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label for="act-duration" class="form-label required">Duration (mins)</label>
+              <input type="number" id="act-duration" class="form-input" min="1" max="600" placeholder="e.g. 35" required>
+              <span class="error-msg" id="act-duration-err"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="act-calories" class="form-label required">Calories (kcal)</label>
+              <input type="number" id="act-calories" class="form-input" min="1" max="5000" placeholder="e.g. 320" required>
+              <span class="error-msg" id="act-calories-err"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="act-distance" class="form-label">Distance (km)</label>
+              <input type="number" id="act-distance" class="form-input" step="0.01" min="0" max="100" placeholder="e.g. 5.0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="slider-header">
+              <label for="act-intensity" class="form-label">Workout Intensity (RPE 1-10)</label>
+              <span id="act-intensity-val" class="slider-val-badge">7 / 10 (Challenging)</span>
+            </div>
+            <input type="range" id="act-intensity" class="form-range" min="1" max="10" value="7">
+          </div>
+
+          <div class="form-group">
+            <span class="form-label">Perceived Effort:</span>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="effort-level" value="Light"> Light
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="effort-level" value="Moderate" checked> Moderate
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="effort-level" value="Intense"> Intense
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="act-notes" class="form-label">Notes &amp; Reflection</label>
+            <textarea id="act-notes" class="form-textarea" rows="2" placeholder="Sets, reps, terrain, or how you felt..."></textarea>
+          </div>
+        </fieldset>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="activity-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Activity Log</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 4: PROFILE, TARGETS & ROLE MANAGEMENT -->
+  <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="profile-modal-title" class="modal-title">My Profile &amp; Fitness Targets</h3>
+        <button class="icon-btn close-modal-btn" data-close="profile-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="profile-form" class="modal-form">
+        <!-- Avatar Selection -->
+        <div class="form-group">
+          <label class="form-label">Athlete Avatar:</label>
+          <div class="avatar-options-grid" id="profile-avatar-picker">
+            <button type="button" class="avatar-option-btn" data-avatar="🏃">🏃</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🏋️">🏋️</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🚴">🚴</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🥊">🥊</button>
+            <button type="button" class="avatar-option-btn" data-avatar="🧘">🧘</button>
+            <button type="button" class="avatar-option-btn" data-avatar="⚡">⚡</button>
+          </div>
+          <input type="hidden" id="prof-selected-avatar" value="🏃">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="prof-name" class="form-label required">Full Name</label>
+            <input type="text" id="prof-name" class="form-input" required minlength="2">
+          </div>
+          <div class="form-group">
+            <label for="prof-age" class="form-label required">Age</label>
+            <input type="number" id="prof-age" class="form-input" min="10" max="100" required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="prof-height" class="form-label required">Height (cm)</label>
+            <input type="number" id="prof-height" class="form-input" min="100" max="250" required>
+          </div>
+          <div class="form-group">
+            <label for="prof-weight" class="form-label required">Weight (kg)</label>
+            <input type="number" id="prof-weight" class="form-input" min="30" max="300" step="0.1" required>
+          </div>
+        </div>
+
+        <div class="glass-subpanel" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span>Calculated BMI: <strong id="modal-bmi-score">22.9</strong></span>
+          <span class="badge" id="modal-bmi-tag" style="background:#dcfce7; color:#16a34a;">Normal Weight</span>
+        </div>
+
+        <div class="form-group">
+          <label for="prof-status" class="form-label">Athlete Mindset / Motto:</label>
+          <input type="text" id="prof-status" class="form-input" placeholder="e.g. Ready to crush personal records today! 🔥">
+        </div>
+
+        <div class="form-group">
+          <label for="prof-role" class="form-label">Account Role (Role-based access):</label>
+          <select id="prof-role" class="form-select">
+            <option value="athlete">Athlete (Personal Workout Logging &amp; Schedule)</option>
+            <option value="staff">Staff / Coach (Platform Admin &amp; Community Operations)</option>
+          </select>
+        </div>
+
+        <fieldset class="form-fieldset">
+          <legend class="form-legend">Daily Health Goals</legend>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label for="prof-goal-steps" class="form-label">Daily Steps</label>
+              <input type="number" id="prof-goal-steps" class="form-input" min="1000" max="50000" step="500">
+            </div>
+            <div class="form-group">
+              <label for="prof-goal-calories" class="form-label">Calorie Goal (kcal)</label>
+              <input type="number" id="prof-goal-calories" class="form-input" min="100" max="5000" step="50">
+            </div>
+            <div class="form-group">
+              <label for="prof-goal-water" class="form-label">Water Target (ml)</label>
+              <input type="number" id="prof-goal-water" class="form-input" min="500" max="10000" step="250">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+          <button type="button" class="btn btn-ghost text-danger" id="modal-profile-logout-btn" style="display: inline-flex; align-items: center; gap: 0.35rem; color: #ef4444; padding-left: 0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Sign Out of FitBuddy</span>
+          </button>
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="button" class="btn btn-ghost" data-close="profile-modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Profile &amp; Role</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 5: UPDATE ATHLETE STATUS -->
+  <div class="modal-overlay" id="status-modal" role="dialog" aria-modal="true" aria-labelledby="status-modal-title" hidden>
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 id="status-modal-title" class="modal-title">Update Daily Athlete Status</h3>
+        <button class="icon-btn close-modal-btn" data-close="status-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="status-update-form" class="modal-form">
+        <div class="form-group">
+          <label for="status-input-text" class="form-label required">What is your fitness focus today?</label>
+          <input type="text" id="status-input-text" class="form-input" placeholder="e.g. Legs &amp; Abs day! Aiming for 10K steps" required maxlength="60">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="status-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Post Status</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 6: CREATE CHALLENGE PROGRAM -->
+  <div class="modal-overlay" id="create-challenge-modal" role="dialog" aria-modal="true" aria-labelledby="create-chal-title" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="create-chal-title" class="modal-title">Create New Challenge Program</h3>
+        <button class="icon-btn close-modal-btn" data-close="create-challenge-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="create-challenge-form" class="modal-form">
+        <div class="form-group">
+          <label for="chal-title" class="form-label required">Challenge Title</label>
+          <input type="text" id="chal-title" class="form-input" placeholder="e.g. 21-Day Core &amp; Abs Sculpt" required>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="chal-category" class="form-label required">Category</label>
+            <select id="chal-category" class="form-select" required>
+              <option value="Cardio">Cardio</option>
+              <option value="Strength">Strength</option>
+              <option value="Wellness">Wellness &amp; Hydration</option>
+              <option value="HIIT">HIIT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="chal-days" class="form-label required">Duration (Days)</label>
+            <input type="number" id="chal-days" class="form-input" min="3" max="90" value="14" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="chal-desc" class="form-label required">Program Commitment &amp; Instructions</label>
+          <textarea id="chal-desc" class="form-textarea" rows="3" placeholder="Explain the daily targets for this challenge..." required></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close="create-challenge-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Challenge</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 7: CSE326 SYLLABUS INSPECTOR -->
+  <div class="modal-overlay" id="syllabus-modal" role="dialog" aria-modal="true" aria-labelledby="syllabus-modal-title" hidden>
+    <div class="modal-card syllabus-modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="badge" style="background:#fff0e6; color:#ff6000;">Course Evaluation</span>
+          <h3 id="syllabus-modal-title" class="modal-title" style="margin-top:0.25rem;">CSE326: Internet Programming Syllabus &amp; Practicals Mapping</h3>
+        </div>
+        <button class="icon-btn close-modal-btn" data-close="syllabus-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="syllabus-body">
+        <p class="syllabus-intro">FitBuddy by WebWeavers demonstrates practical mastery of Units I to VI with real, functional APIs:</p>
+        
+        <div class="syllabus-units-accordion">
+          <details class="syllabus-detail" open>
+            <summary class="syllabus-summary"><strong>Unit I: HTML Fundamentals &amp; Semantic Web</strong></summary>
+            <div class="syllabus-detail-content">
+              <ul>
+                <li><strong>Structure &amp; Typography:</strong> Semantic DOCTYPE, meta viewport, charset, headings, lists, tables with thead/tbody/tfoot.</li>
+                <li><strong>SVG Graphics:</strong> Inline interactive SVG icons, animated SVG calorie progress ring, dynamic SVG weekly calorie bar chart.</li>
+                <li><strong>Diet &amp; Nutrition Engine:</strong> Day-wise 7-day meal planner with Veg &amp; Non-Veg macro tracking, web data extraction, and JSON sync.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="syllabus-detail" open>
+            <summary class="syllabus-summary"><strong>Unit II &amp; III: CSS3 Styling &amp; Responsive Layouts</strong></summary>
+            <div class="syllabus-detail-content">
+              <ul>
+                <li><strong>Orange &amp; White Design:</strong> CSS custom properties (variables), clean contrast, glassmorphism.</li>
+                <li><strong>CSS Grid &amp; Flexbox:</strong> Multi-column dashboard grid, 7-day schedule grid, responsive nav bar.</li>
+                <li><strong>Animations &amp; Print:</strong> Smooth transitions, hover cards, keyframe pulse animations, print media stylesheet.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="syllabus-detail" open>
+            <summary class="syllabus-summary"><strong>Unit IV: JavaScript Core &amp; DOM Manipulation</strong></summary>
+            <div class="syllabus-detail-content">
+              <ul>
+                <li><strong>ES6+ Standards:</strong> Arrow functions, destructuring, template literals, Map/Set, Promises, async/await.</li>
+                <li><strong>Form Validation:</strong> Real-time regex pattern testing, password complexity meter, numerical range checks.</li>
+                <li><strong>State Management:</strong> Centralized state engine, dynamic table filtering, sorting, and inline editing.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="syllabus-detail" open>
+            <summary class="syllabus-summary"><strong>Unit V: Advanced Web APIs (HTML5 API Suite)</strong></summary>
+            <div class="syllabus-detail-content">
+              <ul>
+                <li><strong>Web Storage API:</strong> Persistent multi-user accounts dictionary and active session in <code>localStorage</code>.</li>
+                <li><strong>Geolocation API:</strong> Real-time <code>watchPosition</code> telemetry with Haversine distance and MET calorie math.</li>
+                <li><strong>HTML5 Drag &amp; Drop API:</strong> Drag exercises from pool and reorder day-wise workout routines.</li>
+                <li><strong>Web Audio API:</strong> Synthesized audio tones for workout start, pause, interval countdown, and completion.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="syllabus-detail" open>
+            <summary class="syllabus-summary"><strong>Unit VI: Web Application Deployment &amp; Modern Standards</strong></summary>
+            <div class="syllabus-detail-content">
+              <ul>
+                <li><strong>PWA &amp; Service Worker:</strong> Manifest.json and sw.js for caching and installability.</li>
+                <li><strong>Leaflet &amp; OpenStreetMap:</strong> Real interactive live GPS map with online satellite/street tiles.</li>
+                <li><strong>Role-Based Access:</strong> Athlete vs Coach/Staff admin control center and roster management.</li>
+                <li><strong>Deployment:</strong> 100% client-side, zero build step, immediately deployable on GitHub Pages, Netlify, or local PowerShell server.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close="syllabus-modal">Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 8: FORGOT PASSWORD RECOVERY -->
+  <div class="modal-overlay" id="forgot-password-modal" role="dialog" aria-modal="true" aria-labelledby="forgot-modal-title" hidden>
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 id="forgot-modal-title" class="modal-title">Reset Your Password</h3>
+        <button class="icon-btn close-modal-btn" data-close="forgot-password-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <!-- Step 1: Send Code -->
+      <div id="forgot-step-1">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Enter the email address associated with your FitBuddy account. We will send a secure 6-digit recovery verification code.
+        </p>
+        <form id="forgot-send-code-form">
+          <div class="form-group">
+            <label for="forgot-email" class="form-label required">Registered Email</label>
+            <div class="input-with-icon">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="forgot-email" class="form-input with-icon" placeholder="you@example.com" required>
+            </div>
+            <span class="error-msg" id="forgot-email-err"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="btn-send-otp">
+            <span class="btn-spinner" hidden></span>
+            <span class="btn-text">Send Verification Code</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2: Enter Code & New Password -->
+      <div id="forgot-step-2" style="display:none;">
+        <div class="alert-box" style="background:#f0fdf4; border:1px solid #bbf7d0; color:#16a34a; font-size:0.8rem; padding:0.6rem; border-radius:var(--radius-md); margin-bottom:1rem;">
+          ✓ A recovery code was generated for testing: <strong>482910</strong> (or check notification).
+        </div>
+        <form id="forgot-verify-form">
+          <div class="form-group">
+            <label for="forgot-code" class="form-label required">6-Digit Verification Code</label>
+            <input type="text" id="forgot-code" class="form-input" placeholder="e.g. 482910" maxlength="6" required style="letter-spacing:0.25em; text-align:center; font-weight:800; font-size:1.1rem;">
+            <span class="error-msg" id="forgot-code-err"></span>
+          </div>
+          <div class="form-group">
+            <label for="forgot-new-pwd" class="form-label required">New Secure Password</label>
+            <div class="input-with-icon password-input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="forgot-new-pwd" class="form-input with-icon with-action" placeholder="Min 8 characters" required>
+              <button type="button" class="password-toggle-btn" id="toggle-forgot-password-btn" aria-label="Toggle password visibility">
+                <span class="eye-icon">👁️</span>
+              </button>
+            </div>
+            <span class="error-msg" id="forgot-new-pwd-err"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="btn-reset-save">
+            <span class="btn-spinner" hidden></span>
+            <span class="btn-text">Save New Password &amp; Sign In</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 9: TERMS OF SERVICE & PRIVACY POLICY -->
+  <div class="modal-overlay" id="terms-modal" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title" hidden>
+    <div class="modal-card" style="max-width: 600px; max-height: 85vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h3 id="terms-modal-title" class="modal-title">Terms of Service &amp; Privacy Policy</h3>
+        <button class="icon-btn close-modal-btn" data-close="terms-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-body); line-height: 1.6; display: flex; flex-direction: column; gap: 0.85rem;">
+        <h4 style="color:var(--text-heading); margin-bottom:0.2rem;">1. Zero-Telemetry &amp; Client Privacy</h4>
+        <p>FitBuddy by WebWeavers is an athlete-first, privacy-respecting platform. All authentication records, workout history, GPS runs, and custom diet plans are strictly stored inside your device's browser <code>localStorage</code>. No telemetry or sensitive personal metrics are transmitted to third-party ad networks.</p>
+        <h4 style="color:var(--text-heading); margin-bottom:0.2rem;">2. Health &amp; Athletic Safety</h4>
+        <p>Exercises and nutrition guidelines in FitBuddy are curated based on International Society of Sports Nutrition (ISSN) and National Institutes of Health (NIH) frameworks. Always warm up properly and consult a physician before undertaking high-intensity physical exertion.</p>
+        <h4 style="color:var(--text-heading); margin-bottom:0.2rem;">3. Data Portability</h4>
+        <p>You own 100% of your data. You may export your activity log to CSV or JSON, download the entire Day-Wise Diet Plan, or delete your account at any time.</p>
+      </div>
+      <div class="modal-footer" style="margin-top:1rem;">
+        <button class="btn btn-primary" data-close="terms-modal">I Understand &amp; Agree</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 10: REAL GOOGLE ACCOUNT CONNECTION MODAL -->
+  <div class="modal-overlay" id="google-connect-modal" role="dialog" aria-modal="true" aria-labelledby="google-connect-title" hidden>
+    <div class="modal-card" style="max-width: 490px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <svg viewBox="0 0 24 24" width="28" height="28">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <div>
+            <h3 id="google-connect-title" class="modal-title" style="font-size: 1.15rem; margin: 0;">Connect Real Google Account</h3>
+            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Sign in with your authentic Google Identity</p>
+          </div>
+        </div>
+        <button class="icon-btn close-modal-btn" data-close="google-connect-modal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <!-- Container for official GIS button if Google Identity SDK is rendered -->
+      <div id="google-gis-button-target" style="display: flex; justify-content: center; margin: 0.5rem 0 1rem;"></div>
+
+      <!-- Real Google Connection Form -->
+      <form id="real-google-login-form" class="modal-form" novalidate>
+        <!-- Saved / Detected Google Accounts on device -->
+        <div id="saved-google-accounts-block" style="display: none; margin-bottom: 1rem;">
+          <div style="font-size: 0.785rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem;">Previously Connected Google Accounts:</div>
+          <div id="saved-google-accounts-list" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+          <div class="auth-divider" style="margin: 0.85rem 0;"><span>OR CONNECT WITH ANOTHER GOOGLE ACCOUNT</span></div>
+        </div>
+
+        <div class="form-group">
+          <label for="google-real-email" class="form-label required">Real Google / Gmail Address</label>
+          <div class="input-with-icon">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="google-real-email" class="form-input with-icon" placeholder="e.g. yourname@gmail.com" required autocomplete="email">
+          </div>
+          <span class="error-msg" id="google-real-email-err"></span>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Enter your real personal Google account or Google Workspace email address.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="google-real-name" class="form-label required">Your Full Name (as on your Google Profile)</label>
+          <div class="input-with-icon">
+            <span class="input-icon">👤</span>
+            <input type="text" id="google-real-name" class="form-input with-icon" placeholder="e.g. John Doe" required autocomplete="name">
+          </div>
+          <span class="error-msg" id="google-real-name-err"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Role in FitBuddy</label>
+          <div class="role-selector-grid">
+            <label class="role-card-label">
+              <input type="radio" name="google-account-role" value="athlete" checked>
+              <div class="role-card">
+                <span class="role-icon">🏃</span>
+                <span class="role-title">Athlete / Member</span>
+                <span class="role-desc">Track real personal workouts, diet &amp; challenges</span>
+              </div>
+            </label>
+            <label class="role-card-label">
+              <input type="radio" name="google-account-role" value="coach">
+              <div class="role-card">
+                <span class="role-icon">🛡️</span>
+                <span class="role-title">Coach / Trainer</span>
+                <span class="role-desc">Admin access to member roster &amp; records</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Clean Slate Guarantee Banner -->
+        <div class="zero-reset-guarantee" style="margin: 0.5rem 0 1.25rem 0;">
+          <div class="check-icon-circle">✓</div>
+          <div>
+            <strong>Fresh Start Guaranteed:</strong>
+            <p>New Google accounts start clean with 0 steps, 0 calories, 0 ml water &amp; 0-day streak.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end; align-items: center; margin-top: 1rem;">
+          <button type="button" class="btn btn-outline" data-close="google-connect-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-real-google" style="background:#4285F4; border-color:#4285F4; display:inline-flex; align-items:center; gap:0.5rem;">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path fill="#ffffff" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+              <path fill="#ffffff" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+              <path fill="#ffffff" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#ffffff" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span>Connect &amp; Sign In</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Leaflet.js Online CDN for Live Interactive OpenStreetMap GPS Map -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Embedded Standard Diet Database (Immune to file:/// CORS limits) -->
+  <script id="embedded-diet-data" type="application/json">
+{
+  "title": "FitBuddy by WebWeavers Day-Wise Athletic Nutrition & Diet Plan",
+  "version": "2.0",
+  "extractedFrom": "National Institutes of Health (NIH) & International Society of Sports Nutrition (ISSN) Athletic Dietary Guidelines",
+  "targetCaloriesAverage": 2200,
+  "macroDistribution": {
+    "protein": "25-30%",
+    "carbohydrates": "45-50%",
+    "healthyFats": "25-30%"
+  },
+  "days": {
+    "Monday": {
+      "focus": "High Protein Kickoff & Muscle Priming",
+      "targets": { "calories": 2150, "protein": "140g", "carbs": "220g", "fats": "65g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Sprouted Moong & Paneer Salad with Greek Yogurt & Chia",
+            "desc": "Sprouted mung beans, 100g fresh paneer cubes, chopped cucumbers, tomatoes, 1 tbsp chia seeds, and 100g low-fat Greek yogurt.",
+            "calories": 420,
+            "protein": 28,
+            "carbs": 45,
+            "fats": 14,
+            "nutrients": "High fiber, calcium, plant phytonutrients"
+          },
+          "nonVeg": {
+            "name": "3-Egg Scramble with Multigrain Sourdough & Avocado",
+            "desc": "2 whole eggs + 2 egg whites scrambled with spinach, served with 2 slices of multigrain toast and 40g sliced avocado.",
+            "calories": 460,
+            "protein": 32,
+            "carbs": 35,
+            "fats": 20,
+            "nutrients": "High choline, bioavailable albumin, monounsaturated fats"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Raw Almonds, Walnuts & Crisp Green Apple",
+            "desc": "15 almonds, 4 walnut halves, and 1 crisp green apple.",
+            "calories": 210,
+            "protein": 6,
+            "carbs": 22,
+            "fats": 14,
+            "nutrients": "Vitamin E, polyphenols, omega-3 ALA"
+          },
+          "nonVeg": {
+            "name": "Whey Isolate / Boiled Egg Whites with Fresh Berries",
+            "desc": "1 scoop whey protein in water or 3 boiled egg whites paired with 1 cup fresh blueberries or strawberries.",
+            "calories": 220,
+            "protein": 24,
+            "carbs": 18,
+            "fats": 3,
+            "nutrients": "Fast-absorbing BCAA leucine, antioxidants"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Grilled Tofu & Quinoa Power Bowl with Chickpeas",
+            "desc": "150g firm tofu cubes grilled with olive oil, 1 cup cooked quinoa, 1/2 cup boiled chickpeas, steamed spinach, and lemon tahini dressing.",
+            "calories": 580,
+            "protein": 34,
+            "carbs": 68,
+            "fats": 20,
+            "nutrients": "Complete essential amino acids, iron, magnesium"
+          },
+          "nonVeg": {
+            "name": "Grilled Herb Chicken Breast with Brown Rice & Broccoli",
+            "desc": "180g skinless chicken breast marinated in garlic, rosemary and olive oil, 1 cup brown basmati rice, and steamed broccoli florets.",
+            "calories": 590,
+            "protein": 48,
+            "carbs": 58,
+            "fats": 15,
+            "nutrients": "Lean complete protein, niacin, complex glycogen replenishment"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Banana with All-Natural Peanut Butter & Rolled Oats Bite",
+            "desc": "1 medium ripe banana with 1 tbsp unsweetened peanut butter and a sprinkle of cinnamon rolled oats.",
+            "calories": 240,
+            "protein": 8,
+            "carbs": 36,
+            "fats": 9,
+            "nutrients": "Potassium, pre-workout fast energy, magnesium"
+          },
+          "nonVeg": {
+            "name": "Steamed Sweet Potato with 2 Boiled Eggs",
+            "desc": "150g steamed sweet potato with pink Himalayan salt paired with 2 hard-boiled eggs.",
+            "calories": 260,
+            "protein": 14,
+            "carbs": 32,
+            "fats": 8,
+            "nutrients": "Beta carotene, sustained glucose release"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Yellow Lentil Dal Tadka with Steamed Millets & French Beans",
+            "desc": "1.5 cups yellow moong dal cooked with cumin, ginger and ghee, 1 cup steamed foxtail millets, and stir-fried green beans with coconut.",
+            "calories": 480,
+            "protein": 22,
+            "carbs": 72,
+            "fats": 12,
+            "nutrients": "Easy digestive transit, gut-friendly resistant starch"
+          },
+          "nonVeg": {
+            "name": "Pan-Seared Salmon Fillet with Quinoa & Asparagus",
+            "desc": "150g wild salmon fillet seared in virgin olive oil, 3/4 cup cooked quinoa, and 6 spears of grilled asparagus with lemon juice.",
+            "calories": 520,
+            "protein": 42,
+            "carbs": 38,
+            "fats": 18,
+            "nutrients": "Omega-3 EPA & DHA, joint anti-inflammatory, vitamin D"
+          }
+        }
+      ]
+    },
+    "Tuesday": {
+      "focus": "Complex Carb Loading & Cellular Endurance",
+      "targets": { "calories": 2180, "protein": "142g", "carbs": "230g", "fats": "62g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Warm Cinnamon Oatmeal Bowl with Soy Milk & Seeds",
+            "desc": "1 cup rolled oats cooked in organic soy milk, topped with 1 tbsp flaxseeds, fresh blueberries and crushed pistachios.",
+            "calories": 410,
+            "protein": 18,
+            "carbs": 62,
+            "fats": 12,
+            "nutrients": "Beta-glucan soluble fiber, sustained heart stamina"
+          },
+          "nonVeg": {
+            "name": "Turkey Bacon & Spinach Omelet with Sliced Papaya",
+            "desc": "3-egg omelet loaded with fresh baby spinach and lean turkey slices, served with 1 cup fresh diced papaya.",
+            "calories": 440,
+            "protein": 36,
+            "carbs": 20,
+            "fats": 22,
+            "nutrients": "Papain digestive enzyme, high amino density"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Roasted Masala Black Chickpeas with Lime & Cucumber",
+            "desc": "1 cup dry-roasted black chickpeas (Kala Chana) seasoned with rock salt, cumin, fresh lime and cucumber cubes.",
+            "calories": 180,
+            "protein": 10,
+            "carbs": 26,
+            "fats": 4,
+            "nutrients": "Low GI carb release, iron, copper"
+          },
+          "nonVeg": {
+            "name": "Cottage Cheese & Egg Whites with Pomegranate Seeds",
+            "desc": "100g low-fat cottage cheese and 2 boiled egg whites sprinkled with ruby pomegranate arils.",
+            "calories": 190,
+            "protein": 16,
+            "carbs": 16,
+            "fats": 5,
+            "nutrients": "Slow-release casein, nitric oxide booster"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Rajma (Red Kidney Bean) Curry with Brown Basmati Rice",
+            "desc": "1.5 cups hearty kidney bean curry in tomato-ginger gravy, 1 cup brown basmati rice, grated beetroot salad, and mint chutney.",
+            "calories": 560,
+            "protein": 26,
+            "carbs": 84,
+            "fats": 12,
+            "nutrients": "Folate, molybdenum, sustained liver glycogen"
+          },
+          "nonVeg": {
+            "name": "Chicken Tikka Breast with Whole Wheat Roti & Raita",
+            "desc": "160g roasted chicken breast tikka chunks with 2 whole wheat flatbreads, cucumber Greek yogurt raita, and green salad.",
+            "calories": 580,
+            "protein": 46,
+            "carbs": 54,
+            "fats": 16,
+            "nutrients": "Thermogenic spices, lean poultry protein"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Mixed Berry Chia Smoothie with Almond Milk",
+            "desc": "Blended strawberries, raspberries, 1 scoop plant protein or chia seeds with unsweetened almond milk.",
+            "calories": 210,
+            "protein": 7,
+            "carbs": 34,
+            "fats": 6,
+            "nutrients": "Anthocyanins, hydration electrolytes"
+          },
+          "nonVeg": {
+            "name": "Tuna Salad Wrap on Crisp Lettuce Cups",
+            "desc": "1 can light chunk tuna drained, mixed with Dijon mustard, Greek yogurt, diced celery and wrapped in romaine leaves.",
+            "calories": 230,
+            "protein": 28,
+            "carbs": 10,
+            "fats": 7,
+            "nutrients": "Low carbohydrate, pure protein nitrogen retention"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Palak Paneer (Spinach & Cottage Cheese) with Multi-Millet Roti",
+            "desc": "Fresh pureed spinach gravy with 120g light paneer, 2 multi-millet rotis, and a crunchy radish-cucumber salad.",
+            "calories": 490,
+            "protein": 26,
+            "carbs": 48,
+            "fats": 20,
+            "nutrients": "Iron, lutein for eye health, calcium"
+          },
+          "nonVeg": {
+            "name": "Grilled Lemon Rosemary Chicken with Roasted Sweet Potatoes",
+            "desc": "170g grilled chicken breast fillet, 1 medium baked sweet potato, and steamed French beans.",
+            "calories": 510,
+            "protein": 45,
+            "carbs": 44,
+            "fats": 14,
+            "nutrients": "Vitamin A, complex recovery carbs, zinc"
+          }
+        }
+      ]
+    },
+    "Wednesday": {
+      "focus": "Clean Metabolic Burn & Anti-Inflammatory Balance",
+      "targets": { "calories": 2100, "protein": "145g", "carbs": "210g", "fats": "60g", "water": "3.2L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Besan (Gram Flour) Chilla with Grated Paneer & Mint Chutney",
+            "desc": "2 savory spiced chickpea flour pancakes stuffed with 60g grated paneer, fresh coriander, and mint-coriander dip.",
+            "calories": 390,
+            "protein": 22,
+            "carbs": 42,
+            "fats": 14,
+            "nutrients": "Complex resistant starch, zinc, sulfur aminos"
+          },
+          "nonVeg": {
+            "name": "Poached Eggs & Smoked Salmon on Whole Wheat Toast",
+            "desc": "2 poached farm eggs, 50g smoked salmon slices on toasted whole grain bread with cracked black pepper.",
+            "calories": 440,
+            "protein": 35,
+            "carbs": 30,
+            "fats": 18,
+            "nutrients": "Omega-3, selenium, high leucine profile"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Tender Coconut Water & Raw Sunflower-Pumpkin Seeds",
+            "desc": "1 glass fresh tender coconut water paired with 25g raw pumpkin and sunflower seed kernels.",
+            "calories": 190,
+            "protein": 7,
+            "carbs": 14,
+            "fats": 12,
+            "nutrients": "Potassium, zinc, natural intracellular hydration"
+          },
+          "nonVeg": {
+            "name": "Greek Yogurt Bowl with Crushed Walnuts & Kiwi",
+            "desc": "150g Greek yogurt topped with 1 sliced kiwi and 3 crushed walnut halves.",
+            "calories": 210,
+            "protein": 18,
+            "carbs": 16,
+            "fats": 8,
+            "nutrients": "Probiotics, vitamin C, brain-boosting omega-3"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "High-Protein Soya Chunks & Pea Pulao with Spiced Raita",
+            "desc": "60g textured soya chunks cooked with green peas and brown rice, served with 1 cup roasted cumin curd raita.",
+            "calories": 540,
+            "protein": 38,
+            "carbs": 65,
+            "fats": 12,
+            "nutrients": "Isoflavones, highest plant protein concentration"
+          },
+          "nonVeg": {
+            "name": "Baked Herb Cod / Tilapia Fillet with Garlic Quinoa",
+            "desc": "200g white fish fillet baked in parchment with lemon, thyme and garlic, served with 1 cup cooked quinoa and asparagus.",
+            "calories": 520,
+            "protein": 44,
+            "carbs": 48,
+            "fats": 12,
+            "nutrients": "Ultra-lean marine protein, low saturated fat"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Olive Oil Roasted Makhana (Fox Nuts) with Rock Salt",
+            "desc": "2 cups crunchy roasted lotus seeds tossed in 1 tsp cold-pressed olive oil, turmeric and Himalayan salt.",
+            "calories": 160,
+            "protein": 5,
+            "carbs": 24,
+            "fats": 6,
+            "nutrients": "Anti-aging kaempferol, low sodium, light on digestion"
+          },
+          "nonVeg": {
+            "name": "3 Boiled Egg Whites with Orange Slices",
+            "desc": "3 boiled egg whites sprinkled with black pepper and 1 fresh sweet naval orange.",
+            "calories": 170,
+            "protein": 18,
+            "carbs": 14,
+            "fats": 3,
+            "nutrients": "Quick recovery amino acids, vitamin C collagen support"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Tofu & Edamame Sesame Stir-Fry with Cauliflower Rice",
+            "desc": "150g cubed tofu, 1/2 cup shelled edamame, bell peppers, broccoli tossed in toasted sesame oil over cauliflower rice.",
+            "calories": 440,
+            "protein": 30,
+            "carbs": 36,
+            "fats": 18,
+            "nutrients": "Sulforaphane, low glycemic, hormone balance"
+          },
+          "nonVeg": {
+            "name": "Turkey & Spinach Meatballs in Marinara over Zucchini Noodles",
+            "desc": "180g lean minced turkey meatballs simmered in fresh tomato-basil marinara over spiralized zucchini noodles.",
+            "calories": 480,
+            "protein": 44,
+            "carbs": 22,
+            "fats": 18,
+            "nutrients": "Lycopene, lean iron, low carb nighttime satiety"
+          }
+        }
+      ]
+    },
+    "Thursday": {
+      "focus": "Power Output & Glycogen Synthesis",
+      "targets": { "calories": 2200, "protein": "148g", "carbs": "235g", "fats": "64g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Peanut Butter & Banana Overnight Oats with Soy Protein",
+            "desc": "Overnight soaked rolled oats with unsweetened soy milk, 1 scoop plant protein, 1 tbsp peanut butter and sliced banana.",
+            "calories": 460,
+            "protein": 24,
+            "carbs": 62,
+            "fats": 15,
+            "nutrients": "Potassium, zinc, sustained muscular endurance"
+          },
+          "nonVeg": {
+            "name": "4-Egg Folded Omelet with Turkey Strips & Bell Peppers",
+            "desc": "2 whole eggs + 2 egg whites whisked with peppers and diced lean turkey ham, cooked in olive oil spray.",
+            "calories": 450,
+            "protein": 38,
+            "carbs": 14,
+            "fats": 24,
+            "nutrients": "Choline, high satiety, cellular phospholipid repair"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Orange Slices with Brazil Nuts & Almonds",
+            "desc": "1 fresh orange paired with 2 selenium-rich Brazil nuts and 10 almonds.",
+            "calories": 200,
+            "protein": 5,
+            "carbs": 20,
+            "fats": 13,
+            "nutrients": "Selenium for thyroid optimization, vitamin C"
+          },
+          "nonVeg": {
+            "name": "Whey Isolate Protein Shake with Strawberries",
+            "desc": "1 scoop whey isolate mixed with chilled water or skim milk, blended with 100g fresh strawberries.",
+            "calories": 220,
+            "protein": 28,
+            "carbs": 18,
+            "fats": 2,
+            "nutrients": "Rapid muscle protein synthesis trigger (mTOR)"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Black Bean & Sweet Corn Burrito Bowl with Guacamole",
+            "desc": "1.5 cups seasoned black beans, 1/2 cup sweet corn, 1 cup brown rice, 2 tbsp fresh guacamole and homemade salsa.",
+            "calories": 570,
+            "protein": 24,
+            "carbs": 82,
+            "fats": 18,
+            "nutrients": "Anthocyanins, heart-healthy monounsaturated fats"
+          },
+          "nonVeg": {
+            "name": "Grilled Chicken Breast Fajita Bowl with Brown Rice & Beans",
+            "desc": "180g grilled chicken fajita strips with sautéed bell peppers, 1/2 cup black beans, and 1 cup brown rice.",
+            "calories": 580,
+            "protein": 50,
+            "carbs": 56,
+            "fats": 14,
+            "nutrients": "Maximal protein delivery, glycogen refill"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Sprouted Chickpea Salad with Diced Tomato & Lemon",
+            "desc": "1 cup sprouted chickpeas tossed with finely chopped tomatoes, green chilies, cilantro and fresh lemon juice.",
+            "calories": 200,
+            "protein": 11,
+            "carbs": 30,
+            "fats": 4,
+            "nutrients": "Digestive enzymes, low-fat plant energizer"
+          },
+          "nonVeg": {
+            "name": "Sliced Roast Turkey Breast on Whole Grain Crackers",
+            "desc": "70g lean sliced turkey breast on 4 multigrain crispbreads with sliced cucumbers.",
+            "calories": 210,
+            "protein": 22,
+            "carbs": 18,
+            "fats": 5,
+            "nutrients": "Tryptophan, low sodium recovery crunch"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Methi Dal (Fenugreek Lentil Stew) with Jowar Roti & Bhindi",
+            "desc": "1.5 cups yellow dal with fresh fenugreek leaves, 2 sorghum (jowar) rotis, and dry-roasted spiced okra (bhindi).",
+            "calories": 470,
+            "protein": 21,
+            "carbs": 70,
+            "fats": 11,
+            "nutrients": "Blood sugar regulation, gluten-free whole grain"
+          },
+          "nonVeg": {
+            "name": "Pan-Grilled Salmon with Herb Roasted Potatoes & Spinach",
+            "desc": "160g Atlantic salmon, 1 cup baby roasted potatoes with rosemary, and 2 cups wilted garlic baby spinach.",
+            "calories": 530,
+            "protein": 42,
+            "carbs": 40,
+            "fats": 20,
+            "nutrients": "Potassium, omega-3, iron, anti-cramping minerals"
+          }
+        }
+      ]
+    },
+    "Friday": {
+      "focus": "Recovery Acceleration & Joint Protection",
+      "targets": { "calories": 2150, "protein": "146g", "carbs": "215g", "fats": "65g", "water": "3.0L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Smashed Avocado & Cottage Cheese on Toasted Rye Bread",
+            "desc": "2 slices toasted artisanal rye topped with 50g smashed avocado, 80g paneer/cottage cheese and hemp seeds.",
+            "calories": 430,
+            "protein": 22,
+            "carbs": 38,
+            "fats": 22,
+            "nutrients": "Hemp seed complete aminos, healthy omega-6/omega-3 ratio"
+          },
+          "nonVeg": {
+            "name": "Scrambled Eggs with Smoked Chicken & Sliced Avocado",
+            "desc": "3 free-range eggs scrambled with 60g shredded smoked chicken and 40g sliced avocado.",
+            "calories": 470,
+            "protein": 40,
+            "carbs": 12,
+            "fats": 26,
+            "nutrients": "Lutein, high protein density, vitamin K2"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Green Power Smoothie with Chia Seeds & Coconut Water",
+            "desc": "Baby spinach, cucumber, celery, 1 green apple, and 1 tbsp chia blended in tender coconut water.",
+            "calories": 170,
+            "protein": 5,
+            "carbs": 28,
+            "fats": 5,
+            "nutrients": "Chlorophyll, deep cellular detoxification, potassium"
+          },
+          "nonVeg": {
+            "name": "2 Hard Boiled Eggs with Sliced Cucumbers & Paprika",
+            "desc": "2 whole boiled eggs halved and dusted with smoked Spanish paprika and cucumber slices.",
+            "calories": 170,
+            "protein": 14,
+            "carbs": 4,
+            "fats": 11,
+            "nutrients": "B-complex vitamins, antioxidant capsaicin"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "High-Protein Paneer Bhurji with 2 Multi-Grain Phulkas",
+            "desc": "150g crumbled paneer sautéed with onions, tomatoes, turmeric and green peas, with 2 phulkas and fresh curd.",
+            "calories": 560,
+            "protein": 32,
+            "carbs": 52,
+            "fats": 24,
+            "nutrients": "Curcumin anti-inflammatory, calcium, whey fractions"
+          },
+          "nonVeg": {
+            "name": "Grilled Lemon Pepper Chicken Thigh with Wild Rice",
+            "desc": "180g skinless chicken thigh grilled with black pepper and lemon zest, 1 cup wild/brown rice and roasted baby carrots.",
+            "calories": 570,
+            "protein": 45,
+            "carbs": 50,
+            "fats": 18,
+            "nutrients": "Heme iron, zinc, complex glycogen"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Roasted Edamame Beans seasoned with Sea Salt",
+            "desc": "1 cup warm steamed or dry-roasted edamame in pods dusted with flaky sea salt.",
+            "calories": 190,
+            "protein": 17,
+            "carbs": 14,
+            "fats": 7,
+            "nutrients": "Natural plant isoflavones, fiber, magnesium"
+          },
+          "nonVeg": {
+            "name": "Tuna Salad on Whole Grain Toast",
+            "desc": "100g canned tuna drained, dressed with cold-pressed olive oil, lemon and celery on 1 slice toasted bread.",
+            "calories": 220,
+            "protein": 26,
+            "carbs": 16,
+            "fats": 6,
+            "nutrients": "High EPA/DHA fatty acids, rapid amino delivery"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Tofu Green Curry with Jasmine Brown Rice",
+            "desc": "150g cubed tofu simmered in light coconut milk, green curry paste, bell peppers and bamboo shoots with 1 cup brown rice.",
+            "calories": 490,
+            "protein": 26,
+            "carbs": 58,
+            "fats": 17,
+            "nutrients": "Medium chain triglycerides (MCT), easily metabolized"
+          },
+          "nonVeg": {
+            "name": "Baked White Fish with Herbed Couscous & Mediterranean Veggies",
+            "desc": "180g baked white fish fillet with 3/4 cup herbed couscous, roasted zucchini, eggplant and cherry tomatoes.",
+            "calories": 500,
+            "protein": 42,
+            "carbs": 46,
+            "fats": 13,
+            "nutrients": "Lean protein, quercetin from onions, light nighttime digestion"
+          }
+        }
+      ]
+    },
+    "Saturday": {
+      "focus": "High Output Weekend Energy & Strength Recharge",
+      "targets": { "calories": 2250, "protein": "150g", "carbs": "240g", "fats": "68g", "water": "3.5L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Protein Oatmeal Pancakes with Greek Yogurt & Pure Maple",
+            "desc": "3 fluffy homemade pancakes made of blended oats, banana, plant protein, topped with 2 tbsp Greek yogurt and pure maple syrup.",
+            "calories": 440,
+            "protein": 26,
+            "carbs": 58,
+            "fats": 10,
+            "nutrients": "Slow digestive carbs, glycogen loading, calcium"
+          },
+          "nonVeg": {
+            "name": "3-Egg Omelet Stuffed with Diced Chicken Breast & Spinach",
+            "desc": "3 whole eggs filled with 70g pre-cooked diced chicken breast, mushrooms, and baby spinach.",
+            "calories": 460,
+            "protein": 44,
+            "carbs": 10,
+            "fats": 24,
+            "nutrients": "Dense leucine load, choline, iron"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Watermelon Cubes & Roasted Pumpkin-Flax Mix",
+            "desc": "2 cups sweet fresh watermelon cubes with 20g roasted pumpkin and flaxseed mix.",
+            "calories": 180,
+            "protein": 6,
+            "carbs": 22,
+            "fats": 9,
+            "nutrients": "L-citrulline for vascular dilation and pump"
+          },
+          "nonVeg": {
+            "name": "Whey Protein Shake with Blueberries & Almond Milk",
+            "desc": "1 scoop whey protein blended with 1/2 cup wild blueberries and unsweetened almond milk.",
+            "calories": 200,
+            "protein": 26,
+            "carbs": 15,
+            "fats": 3,
+            "nutrients": "Brain-derived neurotrophic factor support, antioxidants"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Mediterranean Falafel & Hummus Whole Grain Pita Pocket",
+            "desc": "4 baked chickpea falafels, 3 tbsp garlic hummus, chopped tabbouleh and tahini stuffed in a warm whole grain pita.",
+            "calories": 550,
+            "protein": 22,
+            "carbs": 74,
+            "fats": 19,
+            "nutrients": "Heart-healthy olive oil, prebiotic chickpea fiber"
+          },
+          "nonVeg": {
+            "name": "Grilled Chicken Shawarma Salad Bowl with Hummus & Greens",
+            "desc": "180g spiced grilled chicken shawarma over chopped romaine, tomatoes, cucumbers, 3 tbsp hummus and olive oil.",
+            "calories": 560,
+            "protein": 48,
+            "carbs": 34,
+            "fats": 22,
+            "nutrients": "Monounsaturated fats, high protein, low glycemic load"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Apple Wedges with 1 tbsp Natural Almond Butter",
+            "desc": "1 crisp Red Delicious apple sliced and dipped into natural creamy almond butter.",
+            "calories": 200,
+            "protein": 5,
+            "carbs": 26,
+            "fats": 10,
+            "nutrients": "Pectin fiber, healthy fats, steady glucose"
+          },
+          "nonVeg": {
+            "name": "Egg White Muffin Cups with Turkey Bacon & Chives",
+            "desc": "3 baked egg white cups with diced turkey bacon, baby spinach and chives.",
+            "calories": 180,
+            "protein": 22,
+            "carbs": 6,
+            "fats": 7,
+            "nutrients": "Ultra-clean lean protein snack"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Grilled Paneer Steak with Sautéed Mushrooms & Quinoa",
+            "desc": "140g grilled paneer steak seasoned with smoked paprika, served with sautéed garlic mushrooms and 1 cup cooked quinoa.",
+            "calories": 510,
+            "protein": 30,
+            "carbs": 42,
+            "fats": 24,
+            "nutrients": "Selenium from mushrooms, bone-building calcium"
+          },
+          "nonVeg": {
+            "name": "Grilled Lean Beef Sirloin / Chicken Breast with Sweet Potato",
+            "desc": "170g lean sirloin or thick chicken breast grilled medium, 1 baked sweet potato and steamed garlic kale.",
+            "calories": 540,
+            "protein": 48,
+            "carbs": 38,
+            "fats": 16,
+            "nutrients": "Creatine, carnitine, bioavailable iron, vitamin K"
+          }
+        }
+      ]
+    },
+    "Sunday": {
+      "focus": "Digestive Reset, Alkalinity & Active Restoration",
+      "targets": { "calories": 2050, "protein": "135g", "carbs": "210g", "fats": "58g", "water": "3.5L" },
+      "meals": [
+        {
+          "type": "Breakfast",
+          "time": "07:30 - 08:30 AM",
+          "veg": {
+            "name": "Chia Coconut Pudding with Fresh Mango & Berries",
+            "desc": "Overnight chia seeds in light coconut milk, topped with diced sweet mango, raspberries and sliced almonds.",
+            "calories": 390,
+            "protein": 14,
+            "carbs": 46,
+            "fats": 18,
+            "nutrients": "Omega-3, soluble mucilage for digestive health"
+          },
+          "nonVeg": {
+            "name": "Sunny-Side-Up Eggs on Multigrain with Smoked Salmon",
+            "desc": "2 sunny-side-up free-range eggs on whole wheat toast with 40g smoked salmon and peppery baby arugula.",
+            "calories": 430,
+            "protein": 32,
+            "carbs": 28,
+            "fats": 18,
+            "nutrients": "Lutein, healthy marine fats, high protein"
+          }
+        },
+        {
+          "type": "Mid-Morning",
+          "time": "11:00 AM",
+          "veg": {
+            "name": "Probiotic Spiced Buttermilk (Chaas) with Walnuts",
+            "desc": "1 tall glass cold churned probiotic curd with roasted cumin, mint, and 4 raw walnut halves.",
+            "calories": 160,
+            "protein": 6,
+            "carbs": 10,
+            "fats": 12,
+            "nutrients": "Lactobacillus live cultures, gut microbiome reset"
+          },
+          "nonVeg": {
+            "name": "Low-Fat Cottage Cheese / Egg Whites with Strawberries",
+            "desc": "100g cottage cheese or 3 boiled egg whites paired with fresh sweet strawberry halves.",
+            "calories": 170,
+            "protein": 18,
+            "carbs": 14,
+            "fats": 4,
+            "nutrients": "Glutamine, slow digesting amino recovery"
+          }
+        },
+        {
+          "type": "Lunch",
+          "time": "01:00 - 02:00 PM",
+          "veg": {
+            "name": "Soothing Moong Dal & Brown Rice Khichdi with Pure Ghee",
+            "desc": "Classic restorative Ayurvedic khichdi cooked with split yellow mung dal, brown rice, turmeric, cumin, 1 tsp A2 ghee, and roasted papad.",
+            "calories": 520,
+            "protein": 20,
+            "carbs": 82,
+            "fats": 14,
+            "nutrients": "Alkalizing, complete amino profile, easy assimilation"
+          },
+          "nonVeg": {
+            "name": "Slow-Cooked Chicken Bone Broth Stew with Wild Rice",
+            "desc": "Rich collagen chicken bone broth simmered with 150g shredded chicken, carrots, celery, herbs and 1 cup wild rice.",
+            "calories": 510,
+            "protein": 42,
+            "carbs": 48,
+            "fats": 12,
+            "nutrients": "Type II collagen, glycine, joint cartilage repair"
+          }
+        },
+        {
+          "type": "Evening Snack",
+          "time": "05:00 PM",
+          "veg": {
+            "name": "Mixed Sprout Chaat with Lime & Chaat Masala",
+            "desc": "1 cup mixed sprouted lentils with diced onions, tomatoes, green chili, rock salt and fresh lime juice.",
+            "calories": 180,
+            "protein": 10,
+            "carbs": 28,
+            "fats": 3,
+            "nutrients": "Live digestive enzymes, vitamin C, light snack"
+          },
+          "nonVeg": {
+            "name": "2 Hard Boiled Eggs with Sweet Paprika",
+            "desc": "2 whole boiled eggs halved and seasoned with smoked paprika and sea salt.",
+            "calories": 150,
+            "protein": 13,
+            "carbs": 2,
+            "fats": 10,
+            "nutrients": "Zero carb protein satiety"
+          }
+        },
+        {
+          "type": "Dinner",
+          "time": "08:00 - 09:00 PM",
+          "veg": {
+            "name": "Light Vegetable Soup with Grilled Tofu Skewers",
+            "desc": "Clear antioxidant vegetable broth with 120g grilled tofu skewers and a crisp lettuce-cucumber garden salad.",
+            "calories": 420,
+            "protein": 24,
+            "carbs": 38,
+            "fats": 16,
+            "nutrients": "Hydrating, light on gut, ensures restful sleep"
+          },
+          "nonVeg": {
+            "name": "Poached Lemon Dill Salmon with Cauliflower Mash & Greens",
+            "desc": "150g delicate salmon poached with lemon and fresh dill, served with creamy roasted garlic cauliflower mash.",
+            "calories": 460,
+            "protein": 38,
+            "carbs": 18,
+            "fats": 22,
+            "nutrients": "Brain health, low glycemic night recovery"
+          }
+        }
+      ]
+    }
+  }
+}
+
+  </script>
+
+  <!-- Main JavaScript Application Engine -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ex-1",
+    "name": "High Intensity Interval Sprints",
+    "category": "Cardio",
+    "target": "Cardiovascular & Legs",
+    "difficulty": "Hard",
+    "caloriesPerMin": 14,
+    "instructions": "Alternate 30 seconds of maximum effort sprinting with 45 seconds of active walking recovery.",
+    "equipment": "Running shoes / Treadmill"
+  },
+  {
+    "id": "ex-2",
+    "name": "Barbell Squats & Romanian Deadlifts",
+    "category": "Strength",
+    "target": "Quadriceps, Glutes, Hamstrings",
+    "difficulty": "Intermediate",
+    "caloriesPerMin": 9,
+    "instructions": "Maintain neutral spine, hinge hips backward, descend until thighs are parallel to ground.",
+    "equipment": "Barbell & Weights"
+  },
+  {
+    "id": "ex-3",
+    "name": "Power Vinyasa Yoga Flow",
+    "category": "Yoga",
+    "target": "Core, Mobility & Flexibility",
+    "difficulty": "Moderate",
+    "caloriesPerMin": 6,
+    "instructions": "Synchronize breath with dynamic flow between Downward Dog, Warrior II, and Plank.",
+    "equipment": "Yoga Mat"
+  },
+  {
+    "id": "ex-4",
+    "name": "Full Body Kettlebell HIIT",
+    "category": "HIIT",
+    "target": "Total Body Endurance",
+    "difficulty": "Hard",
+    "caloriesPerMin": 12,
+    "instructions": "Complete kettlebell swings, clean & presses, and goblet squats with minimal rest.",
+    "equipment": "Kettlebell"
+  },
+  {
+    "id": "ex-5",
+    "name": "Brisk Outdoor Power Walk",
+    "category": "Walking",
+    "target": "Low Impact Aerobic",
+    "difficulty": "Easy",
+    "caloriesPerMin": 5,
+    "instructions": "Maintain an upright posture, engage abdominal muscles, and swing arms rhythmically.",
+    "equipment": "Comfortable Walking Shoes"
+  },
+  {
+    "id": "ex-6",
+    "name": "Core Pilates & Plank Progression",
+    "category": "Strength",
+    "target": "Core & Lower Back",
+    "difficulty": "Moderate",
+    "caloriesPerMin": 7,
+    "instructions": "Perform forearm planks, side planks, bird-dogs, and hollow body holds.",
+    "equipment": "Exercise Mat"
+  }
+]
